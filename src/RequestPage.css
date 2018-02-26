@@ -1,0 +1,20 @@
+.RequestPage-main {
+    height: 50vh;
+    width: 500px;
+    background-color: darkred;
+    margin: 0 auto;
+}
+
+.requestContainer {
+    width: 90%;
+}
+
+#requestForm {
+    text-align: right;
+}
+
+.fake-link {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
