@@ -1,5 +1,5 @@
 .RequestPage-main {
-    height: 50vh;
+    height: 100vh;
     width: 500px;
     background-color: darkred;
     margin: 0 auto;
@@ -17,4 +17,19 @@
     color: blue;
     text-decoration: underline;
     cursor: pointer;
+}
+
+.textInput {
+    margin-left: 15px;
+}
+.textArea {
+    margin-left: 15px;
+    width: 125px;
+}
+ul.react-datepicker__time-list {
+    padding: 0;
+}
+
+label > div {
+    display: inline;
 }

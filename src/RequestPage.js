@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import moment from 'moment'
 import './RequestPage.css';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 class RequestPage extends Component {
 
@@ -27,16 +29,31 @@ class RequestPage extends Component {
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
+        // this.dateChanged = this.dateChanged(this);
 
         this.state = {
-            name: "Ben",
-            org: "Edge",
-            location: "Denver",
-            type: "Page",
-            justification: "Just because I want to when I want to. No other reason. Thank you."
+            originator: "Ben",
+            phone: "603-520-2799",
+            email: "thatguy@gmail.com",
+            coverageStart: moment.utc().startOf('day'),
+            coverageEnd: moment.utc().startOf('day'),
+            periodicity: "daily",
+            sensor: "Cannon",
+            productRequired: true,
+            classification: "Unclassified",
+            dueDate: moment.utc().startOf('day'),
+            ltiov: moment.utc().startOf('day'),
+            targetName: "rabbits",
+            beNum: "RBT1234",
+            termNum: "TRN1234",
+            coords: "DENVER",
+            eei: "tunneling",
+            justification: "I want this because the dumb rabbits keep getting into the garden and I need to figure out where they are coming from"
+
 
         }
     }
+
 
     handleSubmit(event) {
         console.log("Submitting the form");
@@ -71,7 +88,15 @@ class RequestPage extends Component {
         });
     }
 
+    dateChanged(field, date) {
+        this.setState({
+            [field]: date
+        });
+
+    }
+
     render() {
+        const _this = this;
         return (
             <div className="RequestPage-main">
                 {/*<span className="fake-link" onClick={this.props.resetAction()}>Go back</span>*/}
@@ -80,33 +105,138 @@ class RequestPage extends Component {
                     <form id={"requestForm"} onSubmit={this.handleSubmit}>
                         <label>
                             Name *
-                            <input name="name" type="input" value={this.state.name}
+                            <input className={"textInput"} name="name" type="input" value={this.state.originator}
                                    onChange={this.handleInputChange}/>
                         </label>
                         <br/>
                         <label>
-                            Org *
-                            <input name="org" type="string" value={this.state.org}
+                            Phone *
+                            <input className={"textInput"} name="name" type="input" value={this.state.phone}
                                    onChange={this.handleInputChange}/>
                         </label>
                         <br/>
                         <label>
-                            Location *
-                            <input name="location" type="string" value={this.state.location}
+                            Email *
+                            <input className={"textInput"} name="name" type="input" value={this.state.email}
                                    onChange={this.handleInputChange}/>
                         </label>
                         <br/>
                         <label>
-                            Type *
-                            <input name="type" type="string" value={this.state.type}
+                            Coverage Start *
+                            <DatePicker
+                                className={"textInput"}
+                                selected={_this.state.coverageStart}
+                                onChange={_this.dateChanged.bind(_this, "coverageStart")}
+                                showTimeSelect
+                                dateFormat="YYYY-MM-DDTHH:mm:ss"
+                                timeFormat="HHmm"
+                                timeIntervals={60}
+                                showYearDropdown
+                            />
+                        </label>
+                        <br/>
+                        <label>
+                            Coverage End *
+                            <DatePicker
+                                className={"textInput"}
+                                selected={_this.state.coverageEnd}
+                                onChange={_this.dateChanged.bind(_this, "coverageEnd")}
+                                showTimeSelect
+                                dateFormat="YYYY-MM-DDTHH:mm:ss"
+                                timeFormat="HHmm"
+                                timeIntervals={60}
+                                showYearDropdown
+                            />
+                        </label>
+                        <br/>
+                        <label>
+                            Periodicity
+                            <input className={"textInput"} name="name" type="input" value={this.state.periodicity}
                                    onChange={this.handleInputChange}/>
                         </label>
                         <br/>
                         <label>
-                            Justification *
-                            <textarea name={"justification"} value={this.state.justification}
+                            Desired Sensor
+                            <input className={"textInput"} name="org" type="string" value={this.state.sensor}
                                    onChange={this.handleInputChange}/>
                         </label>
+                        <br/>
+                        <label>
+                            Imagery Product Required
+                            <input className={"textInput"} name="location" type="string" value={this.state.productRequired}
+                                   onChange={this.handleInputChange}/>
+                        </label>
+                        <br/>
+                        <label>
+                            Classification
+                            <input className={"textInput"} name="type" type="string" value={this.state.classification}
+                                   onChange={this.handleInputChange}/>
+                        </label>
+                        <br/>
+                        <label>
+                            Due Date
+                            <DatePicker
+                                className={"textInput"}
+                                selected={_this.state.dueDate}
+                                onChange={_this.dateChanged.bind(_this, "dueDate")}
+                                showTimeSelect
+                                dateFormat="YYYY-MM-DDTHH:mm:ss"
+                                timeFormat="HHmm"
+                                timeIntervals={60}
+                                showYearDropdown
+                            />
+                        </label>
+                        <br/>
+                        <label>
+                            LTIOV <span style={{fontSize: "7px"}}>(last date & time intel of value)</span>
+                            <DatePicker
+                                className={"textInput"}
+                                selected={_this.state.ltiov}
+                                onChange={_this.dateChanged.bind(_this, "ltiov")}
+                                showTimeSelect
+                                dateFormat="YYYY-MM-DDTHH:mm:ss"
+                                timeFormat="HHmm"
+                                timeIntervals={60}
+                                showYearDropdown
+                            />
+                        </label>
+                        <br/>
+                        <label>
+                            Target Name
+                            <input className={"textInput"} name="type" type="string" value={this.state.targetName}
+                                   onChange={this.handleInputChange}/>
+                        </label>
+                        <br/>
+                        <label>
+                            BE #
+                            <input className={"textInput"} name="type" type="string" value={this.state.beNum}
+                                   onChange={this.handleInputChange}/>
+                        </label>
+                        <br/>
+                        <label>
+                            Terminator #
+                            <input className={"textInput"} name="type" type="string" value={this.state.termNum}
+                                   onChange={this.handleInputChange}/>
+                        </label>
+                        <br/>
+                        <label>
+                            Geocoords or MGRS
+                            <input className={"textInput"} name="type" type="string" value={this.state.coords}
+                                   onChange={this.handleInputChange}/>
+                        </label>
+                        <br/>
+                        <label>
+                            EEI
+                            <input className={"textInput"} name="type" type="string" value={this.state.eei}
+                                   onChange={this.handleInputChange}/>
+                        </label>
+                        <br/>
+                        <label>
+                            Justification
+                            <textarea className={"textArea"} name="type" type="string" value={this.state.justification}
+                                   onChange={this.handleInputChange}/>
+                        </label>
+                        <br/>
                         <br/>
                         <input type="submit" value="Submit"/>
                     </form>
