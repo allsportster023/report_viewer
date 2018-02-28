@@ -24,6 +24,7 @@
 }
 .textArea {
     margin-left: 15px;
+    margin-top: 3px;
     width: 125px;
 }
 ul.react-datepicker__time-list {

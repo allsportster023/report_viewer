@@ -12,12 +12,11 @@ class AppMain extends Component {
         //Modes: init, request, status
 
         this.state = {
-            mode: "request"
+            mode: "init"
         }
     }
 
     showInit(){
-        console.log("Showing init");
         return (
             <div className="App-main">
                 <button className={"mainButton"} onClick={this.onNewRequest.bind(this)}>New Request</button>

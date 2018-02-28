@@ -1,31 +1,31 @@
-import React, {Component} from 'react';
-// import axios from 'axios';
-import moment from 'moment'
-import './RequestPage.css';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+    import React, {Component} from 'react';
+    import axios from 'axios';
+    import moment from 'moment'
+    import './RequestPage.css';
+    import DatePicker from 'react-datepicker';
+    import 'react-datepicker/dist/react-datepicker.css';
 
-class RequestPage extends Component {
+    class RequestPage extends Component {
 
-    //TODO Data will look like this:
-    /*
-    {
-        uuid: ObjectId,
-        requestor_name: String,
-        requestor_org: String,
-        requestor_phone: String,
+        //TODO Data will look like this:
+        /*
+        {
+            uuid: ObjectId,
+            requestor_name: String,
+            requestor_org: String,
+            requestor_phone: String,
 
-        request_timestamp: Long,
-        last_updated_name: String
-        last_updated_timestamp: Long,
+            request_timestamp: Long,
+            last_updated_name: String
+            last_updated_timestamp: Long,
 
-        status: String?, [Created, Viewed, Modified]
-    }
-    */
+            status: String?, [Created, Viewed, Modified]
+        }
+        */
 
 
-    constructor(props) {
-        super(props);
+        constructor(props) {
+            super(props);
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -65,11 +65,28 @@ class RequestPage extends Component {
         data.state = "Submitted";
         data.last_updated_time = data.create_timestamp.valueOf();
 
-
         console.log(data);
 
-        alert('Successfully submitted the request. Please check back later to check the status');
+        axios.post('http://localhost:8080/request_tracker/requests/', data)
+            .then(function (response) {
+                //handle success
+                console.log("Successfully posted data to API");
+                console.log(data);
+
+                alert('Successfully submitted the request. Please check back later to check the status');
+
+            })
+            .catch(function (response) {
+                //handle error
+                console.log("Error when posting data to API");
+                console.log(response);
+
+                alert('ERROR while submitting. Tell Ben.');
+
+            });
+
         event.preventDefault();
+
 
         this.props.resetAction();
     }
@@ -105,19 +122,19 @@ class RequestPage extends Component {
                     <form id={"requestForm"} onSubmit={this.handleSubmit}>
                         <label>
                             Name *
-                            <input className={"textInput"} name="name" type="input" value={this.state.originator}
+                            <input className={"textInput"} name="originator" type="input" value={this.state.originator}
                                    onChange={this.handleInputChange}/>
                         </label>
                         <br/>
                         <label>
                             Phone *
-                            <input className={"textInput"} name="name" type="input" value={this.state.phone}
+                            <input className={"textInput"} name="phone" type="input" value={this.state.phone}
                                    onChange={this.handleInputChange}/>
                         </label>
                         <br/>
                         <label>
                             Email *
-                            <input className={"textInput"} name="name" type="input" value={this.state.email}
+                            <input className={"textInput"} name="email" type="input" value={this.state.email}
                                    onChange={this.handleInputChange}/>
                         </label>
                         <br/>
@@ -151,25 +168,26 @@ class RequestPage extends Component {
                         <br/>
                         <label>
                             Periodicity
-                            <input className={"textInput"} name="name" type="input" value={this.state.periodicity}
+                            <input className={"textInput"} name="periodicity" type="input" value={this.state.periodicity}
                                    onChange={this.handleInputChange}/>
                         </label>
                         <br/>
                         <label>
                             Desired Sensor
-                            <input className={"textInput"} name="org" type="string" value={this.state.sensor}
+                            <input className={"textInput"} name="sensor" type="string" value={this.state.sensor}
                                    onChange={this.handleInputChange}/>
                         </label>
                         <br/>
                         <label>
                             Imagery Product Required
-                            <input className={"textInput"} name="location" type="string" value={this.state.productRequired}
+                            <input className={"textInput"} name="productRequired" type="string"
+                                   value={this.state.productRequired}
                                    onChange={this.handleInputChange}/>
                         </label>
                         <br/>
                         <label>
                             Classification
-                            <input className={"textInput"} name="type" type="string" value={this.state.classification}
+                            <input className={"textInput"} name="classification" type="string" value={this.state.classification}
                                    onChange={this.handleInputChange}/>
                         </label>
                         <br/>
@@ -203,38 +221,38 @@ class RequestPage extends Component {
                         <br/>
                         <label>
                             Target Name
-                            <input className={"textInput"} name="type" type="string" value={this.state.targetName}
+                            <input className={"textInput"} name="targetName" type="string" value={this.state.targetName}
                                    onChange={this.handleInputChange}/>
                         </label>
                         <br/>
                         <label>
                             BE #
-                            <input className={"textInput"} name="type" type="string" value={this.state.beNum}
+                            <input className={"textInput"} name="beNum" type="string" value={this.state.beNum}
                                    onChange={this.handleInputChange}/>
                         </label>
                         <br/>
                         <label>
                             Terminator #
-                            <input className={"textInput"} name="type" type="string" value={this.state.termNum}
+                            <input className={"textInput"} name="termNum" type="string" value={this.state.termNum}
                                    onChange={this.handleInputChange}/>
                         </label>
                         <br/>
                         <label>
                             Geocoords or MGRS
-                            <input className={"textInput"} name="type" type="string" value={this.state.coords}
+                            <input className={"textInput"} name="coords" type="string" value={this.state.coords}
                                    onChange={this.handleInputChange}/>
                         </label>
                         <br/>
                         <label>
                             EEI
-                            <input className={"textInput"} name="type" type="string" value={this.state.eei}
+                            <input className={"textInput"} name="eei" type="string" value={this.state.eei}
                                    onChange={this.handleInputChange}/>
                         </label>
                         <br/>
                         <label>
                             Justification
-                            <textarea className={"textArea"} name="type" type="string" value={this.state.justification}
-                                   onChange={this.handleInputChange}/>
+                            <textarea className={"textArea"} name="justification" type="string" value={this.state.justification}
+                                      onChange={this.handleInputChange}/>
                         </label>
                         <br/>
                         <br/>
