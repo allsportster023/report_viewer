@@ -1,6 +1,10 @@
 .StatusPage-main {
     height: 100vh;
-    width: 500px;
-    background-color: darkred;
+    width: 80vw;
+    /*background-color: darkred;*/
     margin: 0 auto;
+}
+
+#statusPageTable {
+    background-color: ghostwhite;
 }

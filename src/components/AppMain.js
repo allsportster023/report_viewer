@@ -13,9 +13,9 @@ import InitPage from "./InitPage";
 class AppMain extends Component {
 
     render() {
-        return (<Router>
-            <div>
-                BENS
+        return (
+            <Router>
+            <div className={"appMain"}>
                 <Route exact path="/" component={InitPage}/>
                 <Route path="/status" component={StatusPage}/>
                 <Route path="/request" component={RequestPage}/>

@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/InitPage.css';
 import './RequestPage'
-import RequestPage from "./RequestPage";
-import StatusPage from "./StatusPage";
 
 class InitPage extends Component {
 

@@ -1,7 +1,7 @@
 .RequestPage-main {
-    height: 100vh;
-    width: 500px;
-    background-color: darkred;
+    width: 40vw;
+    text-align: center;
+    background-color: #262626;
     margin: 0 auto;
 }
 
@@ -24,8 +24,8 @@
 }
 .textArea {
     margin-left: 15px;
-    margin-top: 3px;
-    width: 125px;
+    /*margin-top: 3px;*/
+    width: 214px;
 }
 ul.react-datepicker__time-list {
     padding: 0;
@@ -33,4 +33,8 @@ ul.react-datepicker__time-list {
 
 label > div {
     display: inline;
+}
+
+.is-open {
+    z-index: 100 !important;
 }

@@ -1,5 +1,5 @@
 .App {
-  background-color: steelblue;
+  background-color: black;
   height: 100vh;
 }
 
@@ -27,7 +27,7 @@
 .App-main {
   text-align: center;
   font-size: large;
-  padding-top: 10vh;
+  padding-top: 20px;
 }
 
 .headerLink {

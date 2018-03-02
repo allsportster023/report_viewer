@@ -4,6 +4,8 @@
     import '../styles/RequestPage.css';
     import DatePicker from 'react-datepicker';
     import 'react-datepicker/dist/react-datepicker.css';
+    import 'react-select/dist/react-select.css';
+    import TypeAheadInput from "./TypeAheadInput";
 
     class RequestPage extends Component {
 
@@ -48,6 +50,7 @@
             termNum: "TRN1234",
             coords: "DENVER",
             eei: "tunneling",
+            maxClassification: "Unclassified",
             justification: "I want this because the dumb rabbits keep getting into the garden and I need to figure out where they are coming from"
 
 
@@ -114,22 +117,28 @@
 
     render() {
         const _this = this;
+
         return (
             <div className="RequestPage-main">
                 {/*<span className="fake-link" onClick={this.props.resetAction()}>Go back</span>*/}
                 Please fill in all required fields and submit
                 <div className={"requestContainer"}>
                     <form id={"requestForm"} onSubmit={this.handleSubmit}>
-                        <label>
+
+                        <div>
                             Name *
-                            <input className={"textInput"} name="originator" type="input" value={this.state.originator}
-                                   onChange={this.handleInputChange}/>
-                        </label>
+                            <TypeAheadInput name="Originator" value={this.state.originator} handleChange={this.handleInputChange}/>
+
+                            {/*<input className={"textInput"} name="originator" type="input" value={this.state.originator}*/}
+                                   {/*onChange={this.handleInputChange}/>*/}
+                        </div>
                         <br/>
                         <label>
                             Phone *
-                            <input className={"textInput"} name="phone" type="input" value={this.state.phone}
-                                   onChange={this.handleInputChange}/>
+                            <TypeAheadInput value={this.state.phone} handleChange={this.handleInputChange}/>
+
+                            {/*<input className={"textInput"} name="phone" type="input" value={this.state.phone}*/}
+                                   {/*onChange={this.handleInputChange}/>*/}
                         </label>
                         <br/>
                         <label>

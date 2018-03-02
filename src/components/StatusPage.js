@@ -1,7 +1,10 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import axios from 'axios';
-import StatusEntry from './StatusEntry';
+import BootstrapTable from 'react-bootstrap-table-next';
+import filterFactory, {textFilter} from 'react-bootstrap-table2-filter';
 import '../styles/StatusPage.css';
+import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class StatusPage extends Component {
 
@@ -35,14 +38,54 @@ class StatusPage extends Component {
 
     render() {
 
-        return (
-            <div className="StatusPage-main">
+        const columns = [
+            {
+                dataField: 'reqId',
+                text: 'Request ID',
+                sort: true
+            }, {
+                dataField: 'originator',
+                text: 'Requested By',
+                filter: textFilter(),
+                sort: true
+            }, {
+                dataField: 'beNum',
+                text: 'BE Number',
+                filter: textFilter(),
+                sort: true
+            }, {
+                dataField: 'termNum',
+                text: 'Terminator Number',
+                filter: textFilter(),
+                sort: true
+            }, {
+                dataField: 'eei',
+                text: 'EEI',
+                filter: textFilter(),
+                sort: true
+            }, {
+                dataField: 'coverageStart',
+                text: 'Coverage Start',
+                filter: textFilter(),
+                sort: true
+            }, {
+                dataField: 'coverageEnd',
+                text: 'Coverage End',
+                filter: textFilter(),
+                sort: true
+            }, {
+                dataField: 'state',
+                text: 'Status',
+                filter: textFilter(),
+                sort: true
+            }];
 
-                {this.state.data.map(function (d, i) {
-                    return (<StatusEntry key={i} data={d} />)
-                })}
-            </div>
-        );
+        return (
+            <div id={"statusPageTable"}>
+                <BootstrapTable keyField='reqId' data={this.state.data} columns={columns}
+                                noDataIndication="Table is Empty"
+                                filter={filterFactory()} hover/>
+            </div>);
     }
 }
 
