@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './StatusEntry.css';
+import '../styles/StatusEntry.css';
 
 class StatusPage extends Component {
     render() {

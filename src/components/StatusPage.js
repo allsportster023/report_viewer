@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import StatusEntry from './StatusEntry';
-import './StatusPage.css';
+import '../styles/StatusPage.css';
 
 class StatusPage extends Component {
 

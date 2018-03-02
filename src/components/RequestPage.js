@@ -1,7 +1,7 @@
     import React, {Component} from 'react';
     import axios from 'axios';
     import moment from 'moment'
-    import './RequestPage.css';
+    import '../styles/RequestPage.css';
     import DatePicker from 'react-datepicker';
     import 'react-datepicker/dist/react-datepicker.css';
 
