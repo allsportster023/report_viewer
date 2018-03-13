@@ -1,7 +1,7 @@
 .RequestPage-main {
     width: 40vw;
     text-align: center;
-    background-color: #262626;
+    background-color: white;
     margin: 0 auto;
 }
 
@@ -11,6 +11,7 @@
 
 #requestForm {
     text-align: right;
+    width: 100%;
 }
 
 .fake-link {
@@ -31,10 +32,14 @@ ul.react-datepicker__time-list {
     padding: 0;
 }
 
-label > div {
-    display: inline;
-}
+/*label > div {*/
+    /*display: inline;*/
+/*}*/
 
 .is-open {
     z-index: 100 !important;
+}
+
+.label_format {
+    display: inline-block;
 }

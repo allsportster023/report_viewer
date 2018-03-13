@@ -1,58 +1,57 @@
-    import React, {Component} from 'react';
-    import axios from 'axios';
-    import moment from 'moment'
-    import '../styles/RequestPage.css';
-    import DatePicker from 'react-datepicker';
-    import 'react-datepicker/dist/react-datepicker.css';
-    import 'react-select/dist/react-select.css';
-    import TypeAheadInput from "./TypeAheadInput";
+import React, {Component} from 'react';
+import axios from 'axios';
+import moment from 'moment'
+import '../styles/RequestPage.css';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import 'react-select/dist/react-select.css';
+import TypeAheadInput from "./TypeAheadInput";
 
-    class RequestPage extends Component {
+class RequestPage extends Component {
 
-        //TODO Data will look like this:
-        /*
-        {
-            uuid: ObjectId,
-            requestor_name: String,
-            requestor_org: String,
-            requestor_phone: String,
+    //TODO Data will look like this:
+    /*
+    {
+        uuid: ObjectId,
+        requestor_name: String,
+        requestor_org: String,
+        requestor_phone: String,
 
-            request_timestamp: Long,
-            last_updated_name: String
-            last_updated_timestamp: Long,
+        request_timestamp: Long,
+        last_updated_name: String
+        last_updated_timestamp: Long,
 
-            status: String?, [Created, Viewed, Modified]
-        }
-        */
+        status: String?, [Created, Viewed, Modified]
+    }
+    */
 
 
-        constructor(props) {
-            super(props);
+    constructor(props) {
+        super(props);
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         // this.dateChanged = this.dateChanged(this);
 
         this.state = {
-            originator: "Ben",
-            phone: "603-520-2799",
-            email: "thatguy@gmail.com",
+            originator: "",
+            phone: "",
+            email: "",
             coverageStart: moment.utc().startOf('day'),
             coverageEnd: moment.utc().startOf('day'),
-            periodicity: "daily",
-            sensor: "Cannon",
+            periodicity: "",
+            sensor: "",
             productRequired: true,
-            classification: "Unclassified",
+            classification: "",
+            maxClassification: "",
             dueDate: moment.utc().startOf('day'),
             ltiov: moment.utc().startOf('day'),
-            targetName: "rabbits",
-            beNum: "RBT1234",
-            termNum: "TRN1234",
-            coords: "DENVER",
-            eei: "tunneling",
-            maxClassification: "Unclassified",
-            justification: "I want this because the dumb rabbits keep getting into the garden and I need to figure out where they are coming from"
-
+            targetName: "",
+            beNum: "",
+            termNum: "",
+            coords: "",
+            eei: "",
+            justification: ""
 
         }
     }
@@ -95,16 +94,12 @@
     }
 
 
-    handleInputChange(event) {
-        const target = event.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        const name = target.name;
+    handleInputChange(field, value) {
 
-        console.log(name);
-        console.log(value);
+        console.log(field + ": " + value);
 
         this.setState({
-            [name]: value
+            [field]: value
         });
     }
 
@@ -124,33 +119,48 @@
                 Please fill in all required fields and submit
                 <div className={"requestContainer"}>
                     <form id={"requestForm"} onSubmit={this.handleSubmit}>
+                        <label className="label_format">
+                            Request Classification
+                            <TypeAheadInput name="classification" value={this.state.classification}
+                                            handleChange={this.handleInputChange}
+                                            getOptionsFromApi={true}
+                                            initialOptions={[]}/>
 
-                        <div>
+                        </label>
+                        <br/>
+
+                        <label className="label_format">
                             Name *
-                            <TypeAheadInput name="Originator" value={this.state.originator} handleChange={this.handleInputChange}/>
+                            <TypeAheadInput name="originator" value={this.state.originator}
+                                            handleChange={this.handleInputChange}
+                                            getOptionsFromApi={true}
+                                            initialOptions={[]}/>
 
                             {/*<input className={"textInput"} name="originator" type="input" value={this.state.originator}*/}
-                                   {/*onChange={this.handleInputChange}/>*/}
-                        </div>
+                            {/*onChange={this.handleInputChange}/>*/}
+                        </label>
                         <br/>
-                        <label>
+                        <label className="label_format">
                             Phone *
-                            <TypeAheadInput value={this.state.phone} handleChange={this.handleInputChange}/>
+                            <TypeAheadInput name="phone" value={this.state.phone}
+                                            handleChange={this.handleInputChange}
+                                            getOptionsFromApi={true}
+                                            initialOptions={[]}/>
 
-                            {/*<input className={"textInput"} name="phone" type="input" value={this.state.phone}*/}
-                                   {/*onChange={this.handleInputChange}/>*/}
                         </label>
                         <br/>
-                        <label>
+                        <label className="label_format">
                             Email *
-                            <input className={"textInput"} name="email" type="input" value={this.state.email}
-                                   onChange={this.handleInputChange}/>
+                            <TypeAheadInput name="email" value={this.state.email}
+                                            handleChange={this.handleInputChange}
+                                            getOptionsFromApi={true}
+                                            initialOptions={[]}/>
                         </label>
                         <br/>
-                        <label>
+                        <label className="label_format">
                             Coverage Start *
                             <DatePicker
-                                className={"textInput"}
+                                className={"textInput Select-control"}
                                 selected={_this.state.coverageStart}
                                 onChange={_this.dateChanged.bind(_this, "coverageStart")}
                                 showTimeSelect
@@ -161,7 +171,7 @@
                             />
                         </label>
                         <br/>
-                        <label>
+                        <label className="label_format">
                             Coverage End *
                             <DatePicker
                                 className={"textInput"}
@@ -175,32 +185,39 @@
                             />
                         </label>
                         <br/>
-                        <label>
+                        <label className="label_format">
                             Periodicity
-                            <input className={"textInput"} name="periodicity" type="input" value={this.state.periodicity}
-                                   onChange={this.handleInputChange}/>
+                            <TypeAheadInput name="periodicity" value={this.state.periodicity}
+                                            handleChange={this.handleInputChange}
+                                            getOptionsFromApi={false}
+                                            initialOptions={["Hourly", "Daily", "Weekly", "Bi-Weekly", "Monthly", "Yearly"]}/>
                         </label>
                         <br/>
-                        <label>
+                        <label className="label_format">
                             Desired Sensor
-                            <input className={"textInput"} name="sensor" type="string" value={this.state.sensor}
-                                   onChange={this.handleInputChange}/>
+                            <TypeAheadInput name="sensor" value={this.state.sensor}
+                                            handleChange={this.handleInputChange}
+                                            getOptionsFromApi={true}
+                                            initialOptions={["Cannon", "Nikon", "Pixel"]}/>
                         </label>
                         <br/>
-                        <label>
+                        <label className="label_format">
                             Imagery Product Required
-                            <input className={"textInput"} name="productRequired" type="string"
+                            <input className={"textInput"} name="productRequired" type="checkbox"
                                    value={this.state.productRequired}
                                    onChange={this.handleInputChange}/>
                         </label>
                         <br/>
-                        <label>
-                            Classification
-                            <input className={"textInput"} name="classification" type="string" value={this.state.classification}
-                                   onChange={this.handleInputChange}/>
+                        <label className="label_format">
+                            Final Product Classification
+                            <TypeAheadInput name="maxClassification" value={this.state.maxClassification}
+                                            handleChange={this.handleInputChange}
+                                            getOptionsFromApi={true}
+                                            initialOptions={[]}/>
+
                         </label>
                         <br/>
-                        <label>
+                        <label className="label_format">
                             Due Date
                             <DatePicker
                                 className={"textInput"}
@@ -214,7 +231,7 @@
                             />
                         </label>
                         <br/>
-                        <label>
+                        <label className="label_format">
                             LTIOV <span style={{fontSize: "7px"}}>(last date & time intel of value)</span>
                             <DatePicker
                                 className={"textInput"}
@@ -228,41 +245,53 @@
                             />
                         </label>
                         <br/>
-                        <label>
+                        <label className="label_format">
                             Target Name
-                            <input className={"textInput"} name="targetName" type="string" value={this.state.targetName}
-                                   onChange={this.handleInputChange}/>
+                            <TypeAheadInput name="targetName" value={this.state.targetName}
+                                            handleChange={this.handleInputChange}
+                                            getOptionsFromApi={true}
+                                            initialOptions={[]}/>
                         </label>
                         <br/>
-                        <label>
+                        <label className="label_format">
                             BE #
-                            <input className={"textInput"} name="beNum" type="string" value={this.state.beNum}
-                                   onChange={this.handleInputChange}/>
+                            <TypeAheadInput name="beNum" value={this.state.beNum}
+                                            handleChange={this.handleInputChange}
+                                            getOptionsFromApi={true}
+                                            initialOptions={[]}/>
                         </label>
                         <br/>
-                        <label>
+                        <label className="label_format">
                             Terminator #
-                            <input className={"textInput"} name="termNum" type="string" value={this.state.termNum}
-                                   onChange={this.handleInputChange}/>
+                            <TypeAheadInput name="termNum" value={this.state.termNum}
+                                            handleChange={this.handleInputChange}
+                                            getOptionsFromApi={true}
+                                            initialOptions={[]}/>
+
                         </label>
                         <br/>
-                        <label>
+                        <label className="label_format">
                             Geocoords or MGRS
-                            <input className={"textInput"} name="coords" type="string" value={this.state.coords}
-                                   onChange={this.handleInputChange}/>
+                            <TypeAheadInput name="coords" value={this.state.coords}
+                                            handleChange={this.handleInputChange}
+                                            getOptionsFromApi={true}
+                                            initialOptions={[]}/>
                         </label>
                         <br/>
-                        <label>
+                        <label className="label_format">
                             EEI
-                            <input className={"textInput"} name="eei" type="string" value={this.state.eei}
-                                   onChange={this.handleInputChange}/>
+                            <TypeAheadInput name="eei" value={this.state.eei}
+                                            handleChange={this.handleInputChange}
+                                            getOptionsFromApi={true}
+                                            initialOptions={[]}/>
                         </label>
                         <br/>
-                        <label>
+                        <div>
                             Justification
-                            <textarea className={"textArea"} name="justification" type="string" value={this.state.justification}
+                            <textarea className={"textArea"} name="justification" type="string"
+                                      value={this.state.justification}
                                       onChange={this.handleInputChange}/>
-                        </label>
+                        </div>
                         <br/>
                         <br/>
                         <input type="submit" value="Submit"/>

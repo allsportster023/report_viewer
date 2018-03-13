@@ -80,10 +80,22 @@ class StatusPage extends Component {
                 sort: true
             }];
 
+        const selectRow = {
+            mode: 'radio',
+            clickToSelect: true,
+            hideSelectColumn: true,
+            bgColor: '#00BFFF',
+            onSelect: (row, isSelect, rowIndex) => {
+                console.log(row);
+                console.log(isSelect);
+                console.log(rowIndex);
+            }
+        };
+
         return (
             <div id={"statusPageTable"}>
                 <BootstrapTable keyField='reqId' data={this.state.data} columns={columns}
-                                noDataIndication="Table is Empty"
+                                noDataIndication="Table is Empty"   selectRow={ selectRow }
                                 filter={filterFactory()} hover/>
             </div>);
     }
