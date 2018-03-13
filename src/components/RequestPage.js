@@ -12,7 +12,7 @@
     var iconStyle = {
       border: 'none',
       color: 'white',
-      backgroundColor: '#06ad78',
+          backgroundColor: '#06ad78',
       width: '30px',
     };
 

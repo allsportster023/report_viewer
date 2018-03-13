@@ -1,0 +1,9 @@
+.mainButton {
+    width: 200px;
+    border-radius: 3px;
+    background-color: rgba(255,255,255,0.8);
+}
+.glyph {
+    color: white;
+    background-color: green;
+}
