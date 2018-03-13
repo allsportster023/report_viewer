@@ -6,6 +6,17 @@
     import 'react-datepicker/dist/react-datepicker.css';
     import 'react-select/dist/react-select.css';
     import TypeAheadInput from "./TypeAheadInput";
+    import FontAwesome from 'react-fontawesome'
+    import { InputGroup } from 'react-bootstrap';
+
+    var iconStyle = {
+      border: 'none',
+      color: 'white',
+      backgroundColor: '#06ad78',
+      width: '30px',
+    };
+
+
 
     class RequestPage extends Component {
 
@@ -115,6 +126,8 @@
 
     }
 
+
+
     render() {
         const _this = this;
 
@@ -127,7 +140,7 @@
 
                         <div>
                             Name *
-                            <TypeAheadInput name="Originator" value={this.state.originator} handleChange={this.handleInputChange}/>
+                            <TypeAheadInput className={"fieldStyle"} name="Originator" value={this.state.originator} handleChange={this.handleInputChange}/>
 
                             {/*<input className={"textInput"} name="originator" type="input" value={this.state.originator}*/}
                                    {/*onChange={this.handleInputChange}/>*/}
@@ -141,10 +154,19 @@
                                    {/*onChange={this.handleInputChange}/>*/}
                         </label>
                         <br/>
+
+
                         <label>
-                            Email *
-                            <input className={"textInput"} name="email" type="input" value={this.state.email}
-                                   onChange={this.handleInputChange}/>
+
+                            <div>Email *</div>
+                            <div className="wrapper">
+                                <InputGroup.Addon className={"icon-field"} style={iconStyle}>
+                                    <i className="fa fa-envelope icon-style"/>
+                                    <input className={"textInput"} name="email" type="input" value={this.state.email}
+                                                                       onChange={this.handleInputChange}/>
+                                </InputGroup.Addon>
+
+                            </div>
                         </label>
                         <br/>
                         <label>
