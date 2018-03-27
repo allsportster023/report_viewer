@@ -43,3 +43,7 @@ ul.react-datepicker__time-list {
 .label_format {
     display: inline-block;
 }
+
+.Select-control {
+    width: 200px !important;
+}

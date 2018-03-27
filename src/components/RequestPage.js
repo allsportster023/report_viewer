@@ -9,29 +9,13 @@ import TypeAheadInput from "./TypeAheadInput";
 
 class RequestPage extends Component {
 
-    //TODO Data will look like this:
-    /*
-    {
-        uuid: ObjectId,
-        requestor_name: String,
-        requestor_org: String,
-        requestor_phone: String,
-
-        request_timestamp: Long,
-        last_updated_name: String
-        last_updated_timestamp: Long,
-
-        status: String?, [Created, Viewed, Modified]
-    }
-    */
-
-
     constructor(props) {
         super(props);
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
-        // this.dateChanged = this.dateChanged(this);
+
+        this.statuses = ["rfiSubmitted", "checkingCollects", "collectionSubmitted", "collectionCompleted", "creatingProduct", "uploadingProduct", "productCompleted", "verifyingRequest"];
 
         this.state = {
             originator: "",
@@ -52,7 +36,32 @@ class RequestPage extends Component {
             coords: "",
             eei: "",
             justification: ""
+        }
+    }
 
+    componentWillMount() {
+
+        if (this.props.data) {
+            this.setState({
+                originator: this.props.data.originator,
+                phone: this.props.data.phone,
+                email: this.props.data.email,
+                coverageStart: moment.utc(this.props.data.coverageStart),
+                coverageEnd: moment.utc(this.props.data.coverageEnd),
+                periodicity: this.props.data.periodicity,
+                sensor: this.props.data.sensor,
+                productRequired: this.props.data.productRequired,
+                classification: this.props.data.classification,
+                maxClassification: this.props.data.maxClassification,
+                dueDate: moment.utc(this.props.data.dueDate),
+                ltiov: moment.utc(this.props.data.ltiov),
+                targetName: this.props.data.targetName,
+                beNum: this.props.data.beNum,
+                termNum: this.props.data.termNum,
+                coords: this.props.data.coords,
+                eei: this.props.data.eei,
+                justification: this.props.data.justification
+            })
         }
     }
 
@@ -60,12 +69,19 @@ class RequestPage extends Component {
     handleSubmit(event) {
         console.log("Submitting the form");
 
-        let data = Object.assign({}, this.state);
+        let data = {};
 
+        if (this.props.data) {
+            data = Object.assign(this.props.data, this.state);
+        } else {
+            data = Object.assign({}, this.state);
+        }
 
-        data.create_timestamp = moment().utc().valueOf();
-        data.state = "Submitted";
-        data.last_updated_time = data.create_timestamp.valueOf();
+        const currTime = moment().utc();
+        data.state = this.statuses[this.statuses.indexOf(data.state) + 1];
+        data.lastUpdated = currTime.valueOf();
+        data[data.state + "Timestamp"] = currTime.valueOf();
+        data.reqId = currTime.format('MMM').substr(0, 1).toUpperCase() + currTime.format('dd').substr(0, 1).toUpperCase() + currTime.valueOf().toString().slice(-5);
 
         console.log(data);
 
@@ -90,17 +106,22 @@ class RequestPage extends Component {
         event.preventDefault();
 
 
-        this.props.resetAction();
+        // this.props.resetAction();
     }
 
 
     handleInputChange(field, value) {
 
-        console.log(field + ": " + value);
-
-        this.setState({
-            [field]: value
-        });
+        //If value is null, assume we are working with a textarea
+        if(field.target){
+            this.setState({
+                [field.target.name]: field.target.value
+            });
+        } else {
+            this.setState({
+                [field]: value
+            });
+        }
     }
 
     dateChanged(field, date) {
@@ -174,7 +195,7 @@ class RequestPage extends Component {
                         <label className="label_format">
                             Coverage End *
                             <DatePicker
-                                className={"textInput"}
+                                className={"textInput Select-control"}
                                 selected={_this.state.coverageEnd}
                                 onChange={_this.dateChanged.bind(_this, "coverageEnd")}
                                 showTimeSelect
@@ -220,7 +241,7 @@ class RequestPage extends Component {
                         <label className="label_format">
                             Due Date
                             <DatePicker
-                                className={"textInput"}
+                                className={"textInput Select-control"}
                                 selected={_this.state.dueDate}
                                 onChange={_this.dateChanged.bind(_this, "dueDate")}
                                 showTimeSelect
@@ -234,7 +255,7 @@ class RequestPage extends Component {
                         <label className="label_format">
                             LTIOV <span style={{fontSize: "7px"}}>(last date & time intel of value)</span>
                             <DatePicker
-                                className={"textInput"}
+                                className={"textInput Select-control"}
                                 selected={_this.state.ltiov}
                                 onChange={_this.dateChanged.bind(_this, "ltiov")}
                                 showTimeSelect
@@ -288,6 +309,7 @@ class RequestPage extends Component {
                         <br/>
                         <div>
                             Justification
+                            {/*<Input type="textarea" name="textArea" id="exampleText"  onChange={this.handleInputChange}/>*/}
                             <textarea className={"textArea"} name="justification" type="string"
                                       value={this.state.justification}
                                       onChange={this.handleInputChange}/>
