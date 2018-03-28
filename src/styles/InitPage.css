@@ -1,9 +1,65 @@
-.mainButton {
-    width: 200px;
+.mainButton-init {
+    width: 30%;
+    height: 50%;
     border-radius: 3px;
-    background-color: rgba(255,255,255,0.8);
-}
-.glyph {
+    background-color: #06ad78;
+    border: none;
+    font-size: 30px;
     color: white;
-    background-color: green;
+}
+.subButton {
+        color: #06ad78 !important;
+        border: none;
+        background-color: #262626;
+        font-size: 18px;
+        font-weight: 700;
+        align: right;
+        width: 10%;
+        vertical-align: middle;
+        line-height: 24px;
+        text-shadow: 5px 5px 20px black;
+}
+
+.submitButton {
+    background-image: url("../images/SubmitRequestImg2.png");
+    height: 200px;
+    width: 200px;
+    background-color: none;
+}
+.submitArrow {
+    background: none !important;
+    font-size: 300px;
+    color: #06ad78;
+    text-shadow: 7px 7px 30px black;
+    vertical-align: middle;
+}
+.submitArrowButton {
+    height: 305px;
+    width: 600px;
+    border: none;
+    background: none !important;
+    border-radius: 20px;
+}
+
+.App-main-init {
+  text-align: center;
+  font-size: large;
+  padding-top: 20px;
+}
+button.submitImage {
+   background: url("../images/SubmitRequestImg2.png") no-repeat;
+   width: 200px;
+   height: 200px;
+   border: none;
+}
+.impactText {
+    color: #06ad78;
+    padding-top: 12%;
+    font-size: 100px;
+    font-weight: 900;
+    align: right;
+    width: 400px;
+    vertical-align: middle;
+    line-height: 100px;
+    text-shadow: 5px 5px 20px black;
 }

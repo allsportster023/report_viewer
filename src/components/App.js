@@ -9,7 +9,8 @@ import {
 import RequestPage from "./RequestPage";
 import StatusPage from "./StatusPage";
 import InitPage from "./InitPage";
-
+import { Row } from 'reactstrap';
+import { Column } from 'reactstrap';
 
 class App extends Component {
     render() {

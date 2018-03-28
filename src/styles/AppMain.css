@@ -1,5 +1,11 @@
 .mainButton {
-    width: 100%;
+    width: 30%;
+    height: 50%;
+    border-radius: 3px;
+    background-color: #06ad78;
+    border: none;
+    font-size: 30px;
+    color: white;
 }
 .subButton {
     width: 20%;
