@@ -1,23 +1,21 @@
 .RequestPage-main {
-    width: 40vw;
+    width: 70%;
     text-align: center;
     background-color: rgba(0,0,0,0.5);
     margin: 0 auto;
+    color: gray;
 }
 
 .requestContainer {
-    width: 90%;
+    width: 40px;
+}
+.containerStyle {
+    width: 60px;
 }
 
 #requestForm {
     text-align: left;
-    margin: 20%;
-}
-
-.fake-link {
-    color: blue;
-    text-decoration: underline;
-    cursor: pointer;
+    margin: 2%;
 }
 
 .textInput {
@@ -34,18 +32,18 @@
     border-padding: 5px;
 }
 .textArea {
-    margin-left: 15px;
+    width: 100%;
     /*margin-top: 3px;*/
-    width: 214px;
+    /*width: 214px;*/
 }
 ul.react-datepicker__time-list {
     padding: 0;
 }
 
-label > div {
-    width: 214px;
+/*label > div {
+    width: 320px;
     border-radius: 0px;
-}
+}*/
 
 .is-open {
     z-index: 100 !important;
@@ -53,29 +51,40 @@ label > div {
 .wrapper {
     position: relative;
 }
-i.fa-icon {
-    position: absolute;
-    top: 10px; left: 50px;
+.inputCol {
+    width: 80% !important;
+}
+.inputIcon {
+    background-color: #06ad78;
+}
+.input-group-addon {
+    background-color: #06ad78 !important;
+    border: none !important;
+    color: white !important;
 }
 .icon {
-    position: relative;
+    font-weight: bold;
+}
+.greenButton {
+    background-color: #06ad78;
     color: white;
-    font-size: 20px;
-    width: 250px;
+
 }
-.icon input {
-    padding: 3px;
-    background: blue;
-}
-.icon .fa-envelope {
-    position: absolute;
-}
-.icon-field {
-    background-color: orange;
-}
-.icon-style {
-    padding: 3px;
-    color: white;
-    float: left;
+.label_format {
+    margin-bottom: 1px;
+    margin-top: 6px;
+    padding-bottom: 0px;
+    padding-top: 0px;
 }
 
+/*.label_format {
+    display: inline-block;
+}*/
+
+.Select-control {
+
+}
+.datepickerStyle {
+    padding-left: 10px;
+    width: 100% !important;
+}

@@ -1,3 +1,6 @@
 .mainButton {
-    width: 200px;
+    width: 100%;
+}
+.subButton {
+    width: 20%;
 }

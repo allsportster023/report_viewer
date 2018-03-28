@@ -1,5 +1,6 @@
 import React from 'react';
 import Select from 'react-select';
+import axios from 'axios';
 import '../styles/TypeAheadInput.css';
 import 'react-select/dist/react-select.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -10,79 +11,98 @@ class TypeAheadInput extends React.Component {
     constructor(props) {
         super(props);
 
+        const initialFormattedOptions = this.props.initialOptions.map(function (d) {
+            return {value: d, label: d};
+        });
+
         this.handleChange.bind(this);
         this.state = {
-            selectedValue: '',
+            options: initialFormattedOptions,
+        }
+    }
+
+    componentWillUpdate(nextProps, nextState) {
+        if (nextProps !== this.props) {
+            console.log("Props changed");
+            console.log(nextProps);
+            console.log(this.props);
+
+            this.props = nextProps;
+
+        }
+        if (nextState !== this.state) {
+            console.log("State changed");
+            console.log(nextState);
+            console.log(this.state);
+
+        }
+    }
+
+    componentDidMount() {
+
+        const aggregationUrl = 'http://localhost:8080/request_tracker/requests/_aggrs/' + this.props.name + 'Agg';
+
+        const _this = this;
+
+        console.log(aggregationUrl);
+
+        if (this.props.getOptionsFromApi) {
+
+            axios.get(aggregationUrl)
+                .then(function (response) {
+                    //handle success
+                    // console.log("Successfully pulled aggregation");
+
+                    const uniqueValues = response.data._embedded.map(function (d) {
+                        return {value: d._id, label: d._id};
+                    });
+
+                    // console.log(uniqueValues.length);
+
+                    _this.setState({options: _this.state.options.concat(uniqueValues)});
+
+                })
+                .catch(function (response) {
+                    //handle error
+                    console.log("Error when posting data to API");
+                    console.log(response);
+
+                    // alert('ERROR while submitting. Tell Ben.');
+
+                });
         }
     }
 
     handleChange(selectedValue) {
         console.log(`Selected: ${selectedValue}`);
 
-        this.setState({selectedValue: selectedValue});
-    }
+        // this.setState({selectedValue: selectedValue});
 
-    getValues(input) {
-
-        console.log(input);
-
-        // return {options: ["Ben", "Jesse", "Sam"]};
-        if (!input) {
-            return Promise.resolve({
-                options: [
-                    {value: 'ben', label: 'Ben'},
-                    {value: 'jesse', label: 'Jesse'},
-                    {value: 'sam', label: 'Sam'},
-                    {value: 'lauren', label: 'Lauren'},
-                ]
-            });
-        }
-
-        //
-        // return fetch(`https://api.github.com/search/users?q=${input}`)
-        //     .then((response) => response.json())
-        //     .then((json) => {
-        //         return { options: json.items };
-        //     });
+        this.props.handleChange(this.props.name, selectedValue);
     }
 
     render() {
-        {/*<Select.AsyncCreatable*/
-        }
 
-        const _this = this;
-
-        console.log(this.state.selectedValue);
+        // console.log("Rendering selected:");
+        // console.log(this.props.value);
 
         return (
             <div className="section">
                 <Select.Creatable
-                    id="state-select"
-                    className="my-react-select"
-                    // ref={(ref) => { this.select = ref; }}
-                    onBlurResetsInput={false}
-                    onSelectResetsInput={false}
-                    // loadOptions={this.getValues}
-                    options={[
-                        {value: 'ben', label: 'Ben'},
-                        {value: 'jesse', label: 'Jesse'},
-                        {value: 'sam', label: 'Sam'},
-                        {value: 'lauren', label: 'Lauren'},
-                    ]}
-                    autoFocus
+                    placeholder={"Start typing..."}
+                    name={this.props.value + "Input"}
                     simpleValue
-                    clearable={true}
-                    name="selected-state"
-                    value={this.state.selectedValue}
+                    options={this.state.options}
+                    value={this.props.value}
                     onChange={this.handleChange.bind(this)}
                     searchable={true}
                     backspaceRemoves={true}
-                    placeholder={"Start typing..."}
-                    // placeholder={this.props.name}
-
+                    onBlurResetsInput={false}
+                    onSelectResetsInput={false}
                 />
             </div>
         );
+
     }
 }
 
