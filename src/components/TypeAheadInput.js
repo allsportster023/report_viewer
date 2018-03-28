@@ -4,6 +4,8 @@ import axios from 'axios';
 import '../styles/TypeAheadInput.css';
 import 'react-select/dist/react-select.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Row } from 'reactstrap';
+import { Column } from 'reactstrap';
 
 
 class TypeAheadInput extends React.Component {

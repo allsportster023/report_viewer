@@ -5,6 +5,7 @@
     margin: 0 auto;
 }
 
-#statusPageTable {
-    background-color: ghostwhite;
+.statusPageTable {
+    background-color: rgba(0,0,0,0.5);
+    color: gray;
 }

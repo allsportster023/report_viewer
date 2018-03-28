@@ -1,11 +1,31 @@
-import React, {Component} from 'react';
-import axios from 'axios';
-import moment from 'moment'
-import '../styles/RequestPage.css';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import 'react-select/dist/react-select.css';
-import TypeAheadInput from "./TypeAheadInput";
+    import React, {Component} from 'react';
+    import axios from 'axios';
+    import moment from 'moment'
+    import '../styles/RequestPage.css';
+    import DatePicker from 'react-datepicker';
+    import 'react-datepicker/dist/react-datepicker.css';
+    import 'react-select/dist/react-select.css';
+    import TypeAheadInput from "./TypeAheadInput";
+    import FontAwesome from 'react-fontawesome'
+    import { InputGroup } from 'react-bootstrap';
+    import { Input } from 'reactstrap';
+    import { InputGroupAddon } from 'reactstrap';
+    import { InputGroupText } from 'reactstrap';
+    import { Row } from 'reactstrap';
+    import { Col } from 'reactstrap';
+    import { Container } from 'reactstrap';
+    import { Button } from 'reactstrap';
+    import 'bootstrap/dist/css/bootstrap.min.css';
+
+
+    var iconStyle = {
+      border: 'none',
+      color: 'white',
+          backgroundColor: '#06ad78',
+      width: '30px',
+    };
+
+
 
 class RequestPage extends Component {
 
@@ -140,183 +160,270 @@ class RequestPage extends Component {
                 Please fill in all required fields and submit
                 <div className={"requestContainer"}>
                     <form id={"requestForm"} onSubmit={this.handleSubmit}>
-                        <label className="label_format">
-                            Request Classification
-                            <TypeAheadInput name="classification" value={this.state.classification}
+                        <Container className="containerStyle">
+                            <Row>
+                                <Col md="12">
+                                    <label>Request Classification</label>
+                                    <InputGroup className="input-group margin-bottom-sm">
+                                        <InputGroupAddon className="input-group-addon">
+                                          <i className="icon">//</i>
+                                        </InputGroupAddon>
+                                    <TypeAheadInput name="classification"
+
+                                        value={this.state.classification}
+                                        handleChange={this.handleInputChange}
+                                        getOptionsFromApi={true}
+                                        initialOptions={[]}/>
+                                    </InputGroup>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col md="3">
+                                    <label >Name *</label>
+                                    <InputGroup className="input-group margin-bottom-sm">
+                                        <InputGroupAddon className="input-group-addon">
+                                          <FontAwesome name="user-circle"></FontAwesome>
+                                        </InputGroupAddon>
+                                        <TypeAheadInput name="originator" value={this.state.originator}
+                                                        handleChange={this.handleInputChange}
+                                                        getOptionsFromApi={true}
+                                                        initialOptions={[]}/>
+                                    </InputGroup>
+                                </Col>
+                                <Col md="3">
+                                    <label>Phone *</label>
+                                    <InputGroup className="input-group margin-bottom-sm">
+                                        <InputGroupAddon className="input-group-addon">
+                                          <FontAwesome name="phone"></FontAwesome>
+                                        </InputGroupAddon>
+                                        <TypeAheadInput name="phone" value={this.state.phone}
+                                                        handleChange={this.handleInputChange}
+                                                        getOptionsFromApi={true}
+                                                        initialOptions={[]} />
+                                    </InputGroup>
+                                </Col>
+                                <Col md="6">
+                                    <label>Email *</label>
+                                    <InputGroup className="input-group margin-bottom-sm">
+                                        <InputGroupAddon className="input-group-addon">
+                                           <FontAwesome name="envelope"></FontAwesome>
+                                        </InputGroupAddon>
+                                        <TypeAheadInput name="email" value={this.state.phone}
                                             handleChange={this.handleInputChange}
                                             getOptionsFromApi={true}
-                                            initialOptions={[]}/>
-
-                        </label>
-                        <br/>
-
-                        <label className="label_format">
-                            Name *
-                            <TypeAheadInput name="originator" value={this.state.originator}
-                                            handleChange={this.handleInputChange}
-                                            getOptionsFromApi={true}
-                                            initialOptions={[]}/>
-
-                            {/*<input className={"textInput"} name="originator" type="input" value={this.state.originator}*/}
-                            {/*onChange={this.handleInputChange}/>*/}
-                        </label>
-                        <br/>
-                        <label className="label_format">
-                            Phone *
-                            <TypeAheadInput name="phone" value={this.state.phone}
-                                            handleChange={this.handleInputChange}
-                                            getOptionsFromApi={true}
-                                            initialOptions={[]}/>
-
-                        </label>
-                        <br/>
-                        <label className="label_format">
-                            Email *
-                            <TypeAheadInput name="email" value={this.state.email}
-                                            handleChange={this.handleInputChange}
-                                            getOptionsFromApi={true}
-                                            initialOptions={[]}/>
-                        </label>
-                        <br/>
-                        <label className="label_format">
-                            Coverage Start *
-                            <DatePicker
-                                className={"textInput Select-control"}
-                                selected={_this.state.coverageStart}
-                                onChange={_this.dateChanged.bind(_this, "coverageStart")}
-                                showTimeSelect
-                                dateFormat="YYYY-MM-DDTHH:mm:ss"
-                                timeFormat="HHmm"
-                                timeIntervals={60}
-                                showYearDropdown
-                            />
-                        </label>
-                        <br/>
-                        <label className="label_format">
-                            Coverage End *
-                            <DatePicker
-                                className={"textInput Select-control"}
-                                selected={_this.state.coverageEnd}
-                                onChange={_this.dateChanged.bind(_this, "coverageEnd")}
-                                showTimeSelect
-                                dateFormat="YYYY-MM-DDTHH:mm:ss"
-                                timeFormat="HHmm"
-                                timeIntervals={60}
-                                showYearDropdown
-                            />
-                        </label>
-                        <br/>
-                        <label className="label_format">
-                            Periodicity
-                            <TypeAheadInput name="periodicity" value={this.state.periodicity}
+                                            initialOptions={[]} />
+                                    </InputGroup>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col md="3">
+                                    <label className="label_format">Coverage Start *</label>
+                                    <InputGroup className="input-group margin-bottom-sm">
+                                        <InputGroupAddon className="input-group-addon">
+                                           <FontAwesome name="calendar"></FontAwesome>
+                                        </InputGroupAddon>
+                                        <DatePicker
+                                            className={"Select-control datepickerStyle"}
+                                            selected={_this.state.coverageStart}
+                                            onChange={_this.dateChanged.bind(_this, "coverageStart")}
+                                            showTimeSelect
+                                            dateFormat="YYYY-MM-DDTHH:mm:ss"
+                                            timeFormat="HHmm"
+                                            timeIntervals={60}
+                                            showYearDropdown
+                                        />
+                                    </InputGroup>
+                                </Col>
+                                <Col md="3">
+                                    <label className="label_format">Coverage End *</label>
+                                    <InputGroup className="input-group margin-bottom-sm">
+                                        <InputGroupAddon className="input-group-addon">
+                                           <FontAwesome name="calendar"></FontAwesome>
+                                        </InputGroupAddon>
+                                        <DatePicker
+                                            className={"Select-control datepickerStyle"}
+                                            selected={_this.state.coverageEnd}
+                                            onChange={_this.dateChanged.bind(_this, "coverageEnd")}
+                                            showTimeSelect
+                                            dateFormat="YYYY-MM-DDTHH:mm:ss"
+                                            timeFormat="HHmm"
+                                            timeIntervals={60}
+                                            showYearDropdown
+                                        />
+                                    </InputGroup>
+                                </Col>
+                                <Col md="6">
+                                    <label className="label_format">Periodicity</label>
+                                    <InputGroup className="input-group margin-bottom-sm">
+                                        <InputGroupAddon className="input-group-addon">
+                                           <FontAwesome name="calendar"></FontAwesome>
+                                        </InputGroupAddon>
+                                        <TypeAheadInput name="periodicity" value={this.state.periodicity}
                                             handleChange={this.handleInputChange}
                                             getOptionsFromApi={false}
                                             initialOptions={["Hourly", "Daily", "Weekly", "Bi-Weekly", "Monthly", "Yearly"]}/>
-                        </label>
-                        <br/>
-                        <label className="label_format">
-                            Desired Sensor
-                            <TypeAheadInput name="sensor" value={this.state.sensor}
-                                            handleChange={this.handleInputChange}
-                                            getOptionsFromApi={true}
-                                            initialOptions={["Cannon", "Nikon", "Pixel"]}/>
-                        </label>
-                        <br/>
-                        <label className="label_format">
-                            Imagery Product Required
-                            <input className={"textInput"} name="productRequired" type="checkbox"
-                                   value={this.state.productRequired}
-                                   onChange={this.handleInputChange}/>
-                        </label>
-                        <br/>
-                        <label className="label_format">
-                            Final Product Classification
-                            <TypeAheadInput name="maxClassification" value={this.state.maxClassification}
-                                            handleChange={this.handleInputChange}
-                                            getOptionsFromApi={true}
-                                            initialOptions={[]}/>
+                                    </InputGroup>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col md="3">
+                                <label className="label_format">Due Date</label>
+                                <InputGroup className="input-group margin-bottom-sm">
+                                    <InputGroupAddon className="input-group-addon">
+                                      <FontAwesome name="calendar"></FontAwesome>
+                                    </InputGroupAddon>
+                                    <DatePicker
+                                        className={"Select-control"}
+                                        selected={_this.state.dueDate}
+                                        onChange={_this.dateChanged.bind(_this, "dueDate")}
+                                        showTimeSelect
+                                        dateFormat="YYYY-MM-DDTHH:mm:ss"
+                                        timeFormat="HHmm"
+                                        timeIntervals={60}
+                                        showYearDropdown
+                                    />
+                                </InputGroup>
+                                </Col>
+                                <Col md="3">
+                                <label className="label_format">LTIOV <span style={{fontSize: "7px"}}>(last date & time intel of value)</span></label>
+                                <InputGroup className="input-group margin-bottom-sm">
+                                    <InputGroupAddon className="input-group-addon">
+                                      <FontAwesome name="calendar"></FontAwesome>
+                                    </InputGroupAddon>
+                                    <DatePicker
+                                        className={"Select-control"}
+                                        selected={_this.state.ltiov}
+                                        onChange={_this.dateChanged.bind(_this, "ltiov")}
+                                        showTimeSelect
+                                        dateFormat="YYYY-MM-DDTHH:mm:ss"
+                                        timeFormat="HHmm"
+                                        timeIntervals={60}
+                                        showYearDropdown
+                                    />
+                                </InputGroup>
+                            </Col>
+                            </Row>
+                            <Row>
+                                <Col md="4">
+                                    <label className="label_format">Desired Sensor</label>
+                                    <InputGroup className="input-group margin-bottom-sm">
+                                        <InputGroupAddon className="input-group-addon">
+                                           <FontAwesome name="star"></FontAwesome>
+                                        </InputGroupAddon>
+                                            <TypeAheadInput name="sensor" value={this.state.sensor}
+                                                handleChange={this.handleInputChange}
+                                                getOptionsFromApi={true}
+                                                initialOptions={["Cannon", "Nikon", "Pixel"]}/>
+                                    </InputGroup>
+                                </Col>
+                                <Col md="4">
+                                    <label className="label_format">Final Product Classification</label>
+                                    <InputGroup className="input-group margin-bottom-sm">
+                                        <InputGroupAddon className="input-group-addon">
+                                          <i className="icon">//</i>
+                                        </InputGroupAddon>
+                                        <TypeAheadInput name="maxClassification" value={this.state.maxClassification}
+                                                        handleChange={this.handleInputChange}
+                                                        getOptionsFromApi={true}
+                                                        initialOptions={[]}/>
+                                    </InputGroup>
+                                </Col>
+                                <Col md="4">
+                                    <Row>
+                                    <Col md="12">
+                                    <label className="label_format">Imagery Product Required</label>
+                                    </Col>
+                                    <Col md="12">
+                                        <input name="productRequired" type="checkbox"
+                                               value={this.state.productRequired}
+                                               onChange={this.handleInputChange}/>
+                                    </Col>
+                                    </Row>
+                                </Col>
+                        </Row>
 
-                        </label>
-                        <br/>
-                        <label className="label_format">
-                            Due Date
-                            <DatePicker
-                                className={"textInput Select-control"}
-                                selected={_this.state.dueDate}
-                                onChange={_this.dateChanged.bind(_this, "dueDate")}
-                                showTimeSelect
-                                dateFormat="YYYY-MM-DDTHH:mm:ss"
-                                timeFormat="HHmm"
-                                timeIntervals={60}
-                                showYearDropdown
-                            />
-                        </label>
-                        <br/>
-                        <label className="label_format">
-                            LTIOV <span style={{fontSize: "7px"}}>(last date & time intel of value)</span>
-                            <DatePicker
-                                className={"textInput Select-control"}
-                                selected={_this.state.ltiov}
-                                onChange={_this.dateChanged.bind(_this, "ltiov")}
-                                showTimeSelect
-                                dateFormat="YYYY-MM-DDTHH:mm:ss"
-                                timeFormat="HHmm"
-                                timeIntervals={60}
-                                showYearDropdown
-                            />
-                        </label>
-                        <br/>
-                        <label className="label_format">
-                            Target Name
-                            <TypeAheadInput name="targetName" value={this.state.targetName}
-                                            handleChange={this.handleInputChange}
-                                            getOptionsFromApi={true}
-                                            initialOptions={[]}/>
-                        </label>
-                        <br/>
-                        <label className="label_format">
-                            BE #
-                            <TypeAheadInput name="beNum" value={this.state.beNum}
-                                            handleChange={this.handleInputChange}
-                                            getOptionsFromApi={true}
-                                            initialOptions={[]}/>
-                        </label>
-                        <br/>
-                        <label className="label_format">
-                            Terminator #
-                            <TypeAheadInput name="termNum" value={this.state.termNum}
-                                            handleChange={this.handleInputChange}
-                                            getOptionsFromApi={true}
-                                            initialOptions={[]}/>
+                        <Row>
+                        <Col md="4">
+                            <label className="label_format">Target Name</label>
+                            <InputGroup className="input-group margin-bottom-sm">
+                                <InputGroupAddon className="input-group-addon">
+                                  <FontAwesome name="crosshairs"></FontAwesome>
+                                </InputGroupAddon>
+                                <TypeAheadInput name="targetName" value={this.state.targetName}
+                                                handleChange={this.handleInputChange}
+                                                getOptionsFromApi={true}
+                                                initialOptions={[]}/>
+                            </InputGroup>
+                        </Col>
+                        <Col md="4">
+                            <label className="label_format">BE #</label>
+                            <InputGroup className="input-group margin-bottom-sm">
+                                <InputGroupAddon className="input-group-addon">
+                                  <FontAwesome name="hashtag"></FontAwesome>
+                                </InputGroupAddon>
+                                <TypeAheadInput name="beNum" value={this.state.beNum}
+                                                handleChange={this.handleInputChange}
+                                                getOptionsFromApi={true}
+                                                initialOptions={[]}/>
+                            </InputGroup>
+                        </Col>
+                        <Col md="4">
+                            <label className="label_format">Terminator #</label>
+                            <InputGroup className="input-group margin-bottom-sm">
+                                <InputGroupAddon className="input-group-addon">
+                                  <FontAwesome name="hashtag"></FontAwesome>
+                                </InputGroupAddon>
+                                <TypeAheadInput name="termNum" value={this.state.termNum}
+                                    handleChange={this.handleInputChange}
+                                    getOptionsFromApi={true}
+                                    initialOptions={[]}/>
+                            </InputGroup>
+                        </Col>
+                        </Row>
+                        <Row>
+                        <Col md="6">
+                            <label className="label_format">Geocoords or MGRS</label>
+                            <InputGroup className="input-group margin-bottom-sm">
+                                <InputGroupAddon className="input-group-addon">
+                                  <FontAwesome name="globe"></FontAwesome>
+                                </InputGroupAddon>
+                                <TypeAheadInput name="coords" value={this.state.coords}
+                                                handleChange={this.handleInputChange}
+                                                getOptionsFromApi={true}
+                                                initialOptions={[]}/>
+                            </InputGroup>
+                        </Col>
+                        <Col md="6">
+                            <label className="label_format">EEI</label>
+                            <InputGroup className="input-group margin-bottom-sm">
+                                <InputGroupAddon className="input-group-addon">
+                                  <FontAwesome name="map-marker"></FontAwesome>
+                                </InputGroupAddon>
+                                <TypeAheadInput name="eei" value={this.state.eei}
+                                                handleChange={this.handleInputChange}
+                                                getOptionsFromApi={true}
+                                                initialOptions={[]}/>
+                            </InputGroup>
+                        </Col>
+                        </Row>
+                        <Row>
+                            <Col md="12">
+                            <label className="label_format">Justification</label>
+                            </Col>
+                            <Col md="12">
+                                <textarea className={"textArea"} name="justification" type="string"
+                                          value={this.state.justification}
+                                          onChange={this.handleInputChange}/>
+                            </Col>
+                        </Row>
 
-                        </label>
+
+
                         <br/>
-                        <label className="label_format">
-                            Geocoords or MGRS
-                            <TypeAheadInput name="coords" value={this.state.coords}
-                                            handleChange={this.handleInputChange}
-                                            getOptionsFromApi={true}
-                                            initialOptions={[]}/>
-                        </label>
-                        <br/>
-                        <label className="label_format">
-                            EEI
-                            <TypeAheadInput name="eei" value={this.state.eei}
-                                            handleChange={this.handleInputChange}
-                                            getOptionsFromApi={true}
-                                            initialOptions={[]}/>
-                        </label>
-                        <br/>
-                        <div>
-                            Justification
-                            {/*<Input type="textarea" name="textArea" id="exampleText"  onChange={this.handleInputChange}/>*/}
-                            <textarea className={"textArea"} name="justification" type="string"
-                                      value={this.state.justification}
-                                      onChange={this.handleInputChange}/>
-                        </div>
-                        <br/>
-                        <br/>
-                        <input type="submit" value="Submit"/>
+                        <Col md="12">
+                        <Button block size="lg" type="submit" value="Submit" className="greenButton">Submit</Button>
+                        </Col>
+                        </Container>
                     </form>
                 </div>
             </div>

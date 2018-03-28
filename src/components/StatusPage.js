@@ -151,7 +151,7 @@ class StatusPage extends Component {
         };
 
         return (
-            <div id={"statusPageTable"}>
+            <div className={"statusPageTable"}>
                 <BootstrapTable keyField='reqId' data={this.state.data} columns={columns}
                                 noDataIndication="Table is Empty" selectRow={selectRow}
                                 filter={filterFactory()} hover deleteRow/>

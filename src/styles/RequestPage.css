@@ -1,49 +1,90 @@
 .RequestPage-main {
-    width: 40vw;
+    width: 70%;
     text-align: center;
-    background-color: white;
+    background-color: rgba(0,0,0,0.5);
     margin: 0 auto;
+    color: gray;
 }
 
 .requestContainer {
-    width: 90%;
+    width: 40px;
+}
+.containerStyle {
+    width: 60px;
 }
 
 #requestForm {
-    text-align: right;
-    width: 100%;
-}
-
-.fake-link {
-    color: blue;
-    text-decoration: underline;
-    cursor: pointer;
+    text-align: left;
+    margin: 2%;
 }
 
 .textInput {
-    margin-left: 15px;
+    /*background-color: rgba(255,255,255,0.3);*/
+    background-color: rgba(255,255,255,0.0);
+    border: none;
+    padding-left: 10px;
+}
+.textInput:focus {
+    outline: none !important;
+    border: 2px solid #06ad78;
+    border-radius: 3px;
+    border-weight: 1px;
+    border-padding: 5px;
 }
 .textArea {
-    margin-left: 15px;
+    width: 100%;
     /*margin-top: 3px;*/
-    width: 214px;
+    /*width: 214px;*/
 }
 ul.react-datepicker__time-list {
     padding: 0;
 }
 
-/*label > div {*/
-    /*display: inline;*/
-/*}*/
+/*label > div {
+    width: 320px;
+    border-radius: 0px;
+}*/
 
 .is-open {
     z-index: 100 !important;
 }
+.wrapper {
+    position: relative;
+}
+.inputCol {
+    width: 80% !important;
+}
+.inputIcon {
+    background-color: #06ad78;
+}
+.input-group-addon {
+    background-color: #06ad78 !important;
+    border: none !important;
+    color: white !important;
+}
+.icon {
+    font-weight: bold;
+}
+.greenButton {
+    background-color: #06ad78;
+    color: white;
 
+}
 .label_format {
-    display: inline-block;
+    margin-bottom: 1px;
+    margin-top: 6px;
+    padding-bottom: 0px;
+    padding-top: 0px;
 }
 
+/*.label_format {
+    display: inline-block;
+}*/
+
 .Select-control {
-    width: 200px !important;
+
+}
+.datepickerStyle {
+    padding-left: 10px;
+    width: 100% !important;
 }
