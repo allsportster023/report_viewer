@@ -4,9 +4,6 @@ import axios from 'axios';
 import '../styles/TypeAheadInput.css';
 import 'react-select/dist/react-select.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Row } from 'reactstrap';
-import { Column } from 'reactstrap';
-
 
 class TypeAheadInput extends React.Component {
 
@@ -25,18 +22,7 @@ class TypeAheadInput extends React.Component {
 
     componentWillUpdate(nextProps, nextState) {
         if (nextProps !== this.props) {
-            console.log("Props changed");
-            console.log(nextProps);
-            console.log(this.props);
-
             this.props = nextProps;
-
-        }
-        if (nextState !== this.state) {
-            console.log("State changed");
-            console.log(nextState);
-            console.log(this.state);
-
         }
     }
 
@@ -45,8 +31,6 @@ class TypeAheadInput extends React.Component {
         const aggregationUrl = 'http://localhost:8080/request_tracker/requests/_aggrs/' + this.props.name + 'Agg';
 
         const _this = this;
-
-        console.log(aggregationUrl);
 
         if (this.props.getOptionsFromApi) {
 
@@ -88,14 +72,22 @@ class TypeAheadInput extends React.Component {
         // console.log("Rendering selected:");
         // console.log(this.props.value);
 
+        let SelectComponent = Select;
+
+        if (typeof this.props.creatable === "undefined" || this.props.creatable) {
+            SelectComponent = Select.Creatable;
+        }
+
         return (
             <div className="section">
-                <Select.Creatable
-                    placeholder={"Start typing..."}
+                <SelectComponent
+                    placeholder={"Start typing or click..."}
                     name={this.props.value + "Input"}
                     simpleValue
                     options={this.state.options}
+                    clearable={this.props.clearable}
                     value={this.props.value}
+                    disabled={this.props.disabled}
                     onChange={this.handleChange.bind(this)}
                     searchable={true}
                     backspaceRemoves={true}

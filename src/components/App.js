@@ -9,8 +9,6 @@ import {
 import RequestPage from "./RequestPage";
 import StatusPage from "./StatusPage";
 import InitPage from "./InitPage";
-import { Row } from 'reactstrap';
-import { Column } from 'reactstrap';
 
 class App extends Component {
     render() {
@@ -19,7 +17,7 @@ class App extends Component {
                 <div className="App">
                     <header className="App-header">
                         <img src={logo} className="App-logo" alt="logo"/>
-                        <span>Welcome to React</span>
+                        <span>Warhawks Tool</span>
                         <span className={"headerLink"}><Link to="/">Home</Link></span>
                         <span className={"headerLink"}><Link to="/status">Status</Link></span>
                         <span className={"headerLink"}><Link to="/request">Request</Link></span>

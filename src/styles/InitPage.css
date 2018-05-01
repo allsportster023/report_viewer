@@ -21,7 +21,6 @@
 }
 
 .submitButton {
-    background-image: url("../images/SubmitRequestImg2.png");
     height: 200px;
     width: 200px;
     background-color: none;
@@ -47,7 +46,6 @@
   padding-top: 20px;
 }
 button.submitImage {
-   background: url("../images/SubmitRequestImg2.png") no-repeat;
    width: 200px;
    height: 200px;
    border: none;

@@ -1,30 +1,27 @@
-    import React, {Component} from 'react';
-    import axios from 'axios';
-    import moment from 'moment'
-    import '../styles/RequestPage.css';
-    import DatePicker from 'react-datepicker';
-    import 'react-datepicker/dist/react-datepicker.css';
-    import 'react-select/dist/react-select.css';
-    import TypeAheadInput from "./TypeAheadInput";
-    import FontAwesome from 'react-fontawesome'
-    import { InputGroup } from 'react-bootstrap';
-    import { Input } from 'reactstrap';
-    import { InputGroupAddon } from 'reactstrap';
-    import { InputGroupText } from 'reactstrap';
-    import { Row } from 'reactstrap';
-    import { Col } from 'reactstrap';
-    import { Container } from 'reactstrap';
-    import { Button } from 'reactstrap';
-    import 'bootstrap/dist/css/bootstrap.min.css';
+import React, {Component} from 'react';
+import axios from 'axios';
+import moment from 'moment'
+import '../styles/RequestPage.css';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import 'react-select/dist/react-select.css';
+import TypeAheadInput from "./TypeAheadInput";
+import FontAwesome from 'react-fontawesome'
+import {InputGroup} from 'react-bootstrap';
+import {InputGroupAddon} from 'reactstrap';
+import {Row} from 'reactstrap';
+import {Col} from 'reactstrap';
+import {Container} from 'reactstrap';
+import {Button} from 'reactstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-    var iconStyle = {
-      border: 'none',
-      color: 'white',
-          backgroundColor: '#06ad78',
-      width: '30px',
-    };
-
+// var iconStyle = {
+//   border: 'none',
+//   color: 'white',
+//       backgroundColor: '#06ad78',
+//   width: '30px',
+// };
 
 
 class RequestPage extends Component {
@@ -133,7 +130,7 @@ class RequestPage extends Component {
     handleInputChange(field, value) {
 
         //If value is null, assume we are working with a textarea
-        if(field.target){
+        if (field.target) {
             this.setState({
                 [field.target.name]: field.target.value
             });
@@ -165,24 +162,24 @@ class RequestPage extends Component {
                                 <Col md="12">
                                     <label>Request Classification</label>
                                     <InputGroup className="input-group margin-bottom-sm">
-                                        <InputGroupAddon className="input-group-addon">
-                                          <i className="icon">//</i>
+                                        <InputGroupAddon className="input-group-addon" addonType="prepend">
+                                            <i className="icon">{"//"}</i>
                                         </InputGroupAddon>
-                                    <TypeAheadInput name="classification"
+                                        <TypeAheadInput name="classification"
 
-                                        value={this.state.classification}
-                                        handleChange={this.handleInputChange}
-                                        getOptionsFromApi={true}
-                                        initialOptions={[]}/>
+                                                        value={this.state.classification}
+                                                        handleChange={this.handleInputChange}
+                                                        getOptionsFromApi={true}
+                                                        initialOptions={[]}/>
                                     </InputGroup>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col md="3">
-                                    <label >Name *</label>
+                                    <label>Name *</label>
                                     <InputGroup className="input-group margin-bottom-sm">
-                                        <InputGroupAddon className="input-group-addon">
-                                          <FontAwesome name="user-circle"></FontAwesome>
+                                        <InputGroupAddon className="input-group-addon" addonType="prepend">
+                                            <FontAwesome name="user-circle"/>
                                         </InputGroupAddon>
                                         <TypeAheadInput name="originator" value={this.state.originator}
                                                         handleChange={this.handleInputChange}
@@ -193,25 +190,25 @@ class RequestPage extends Component {
                                 <Col md="3">
                                     <label>Phone *</label>
                                     <InputGroup className="input-group margin-bottom-sm">
-                                        <InputGroupAddon className="input-group-addon">
-                                          <FontAwesome name="phone"></FontAwesome>
+                                        <InputGroupAddon className="input-group-addon" addonType="prepend">
+                                            <FontAwesome name="phone"/>
                                         </InputGroupAddon>
                                         <TypeAheadInput name="phone" value={this.state.phone}
                                                         handleChange={this.handleInputChange}
                                                         getOptionsFromApi={true}
-                                                        initialOptions={[]} />
+                                                        initialOptions={[]}/>
                                     </InputGroup>
                                 </Col>
                                 <Col md="6">
                                     <label>Email *</label>
                                     <InputGroup className="input-group margin-bottom-sm">
-                                        <InputGroupAddon className="input-group-addon">
-                                           <FontAwesome name="envelope"></FontAwesome>
+                                        <InputGroupAddon className="input-group-addon" addonType="prepend">
+                                            <FontAwesome name="envelope"/>
                                         </InputGroupAddon>
-                                        <TypeAheadInput name="email" value={this.state.phone}
-                                            handleChange={this.handleInputChange}
-                                            getOptionsFromApi={true}
-                                            initialOptions={[]} />
+                                        <TypeAheadInput name="email" value={this.state.email}
+                                                        handleChange={this.handleInputChange}
+                                                        getOptionsFromApi={true}
+                                                        initialOptions={[]}/>
                                     </InputGroup>
                                 </Col>
                             </Row>
@@ -219,8 +216,8 @@ class RequestPage extends Component {
                                 <Col md="3">
                                     <label className="label_format">Coverage Start *</label>
                                     <InputGroup className="input-group margin-bottom-sm">
-                                        <InputGroupAddon className="input-group-addon">
-                                           <FontAwesome name="calendar"></FontAwesome>
+                                        <InputGroupAddon className="input-group-addon" addonType="prepend">
+                                            <FontAwesome name="calendar"/>
                                         </InputGroupAddon>
                                         <DatePicker
                                             className={"Select-control datepickerStyle"}
@@ -237,8 +234,8 @@ class RequestPage extends Component {
                                 <Col md="3">
                                     <label className="label_format">Coverage End *</label>
                                     <InputGroup className="input-group margin-bottom-sm">
-                                        <InputGroupAddon className="input-group-addon">
-                                           <FontAwesome name="calendar"></FontAwesome>
+                                        <InputGroupAddon className="input-group-addon" addonType="prepend">
+                                            <FontAwesome name="calendar"/>
                                         </InputGroupAddon>
                                         <DatePicker
                                             className={"Select-control datepickerStyle"}
@@ -255,72 +252,122 @@ class RequestPage extends Component {
                                 <Col md="6">
                                     <label className="label_format">Periodicity</label>
                                     <InputGroup className="input-group margin-bottom-sm">
-                                        <InputGroupAddon className="input-group-addon">
-                                           <FontAwesome name="calendar"></FontAwesome>
+                                        <InputGroupAddon className="input-group-addon" addonType="prepend">
+                                            <FontAwesome name="calendar"/>
                                         </InputGroupAddon>
                                         <TypeAheadInput name="periodicity" value={this.state.periodicity}
-                                            handleChange={this.handleInputChange}
-                                            getOptionsFromApi={false}
-                                            initialOptions={["Hourly", "Daily", "Weekly", "Bi-Weekly", "Monthly", "Yearly"]}/>
+                                                        handleChange={this.handleInputChange}
+                                                        getOptionsFromApi={false}
+                                                        initialOptions={["Hourly", "Daily", "Weekly", "Bi-Weekly", "Monthly", "Yearly"]}/>
                                     </InputGroup>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col md="3">
-                                <label className="label_format">Due Date</label>
-                                <InputGroup className="input-group margin-bottom-sm">
-                                    <InputGroupAddon className="input-group-addon">
-                                      <FontAwesome name="calendar"></FontAwesome>
-                                    </InputGroupAddon>
-                                    <DatePicker
-                                        className={"Select-control"}
-                                        selected={_this.state.dueDate}
-                                        onChange={_this.dateChanged.bind(_this, "dueDate")}
-                                        showTimeSelect
-                                        dateFormat="YYYY-MM-DDTHH:mm:ss"
-                                        timeFormat="HHmm"
-                                        timeIntervals={60}
-                                        showYearDropdown
-                                    />
-                                </InputGroup>
+                                    <label className="label_format">Due Date</label>
+                                    <InputGroup className="input-group margin-bottom-sm">
+                                        <InputGroupAddon className="input-group-addon" addonType="prepend">
+                                            <FontAwesome name="calendar"/>
+                                        </InputGroupAddon>
+                                        <DatePicker
+                                            className={"Select-control"}
+                                            selected={_this.state.dueDate}
+                                            onChange={_this.dateChanged.bind(_this, "dueDate")}
+                                            showTimeSelect
+                                            dateFormat="YYYY-MM-DDTHH:mm:ss"
+                                            timeFormat="HHmm"
+                                            timeIntervals={60}
+                                            showYearDropdown
+                                        />
+                                    </InputGroup>
                                 </Col>
                                 <Col md="3">
-                                <label className="label_format">LTIOV <span style={{fontSize: "7px"}}>(last date & time intel of value)</span></label>
-                                <InputGroup className="input-group margin-bottom-sm">
-                                    <InputGroupAddon className="input-group-addon">
-                                      <FontAwesome name="calendar"></FontAwesome>
-                                    </InputGroupAddon>
-                                    <DatePicker
-                                        className={"Select-control"}
-                                        selected={_this.state.ltiov}
-                                        onChange={_this.dateChanged.bind(_this, "ltiov")}
-                                        showTimeSelect
-                                        dateFormat="YYYY-MM-DDTHH:mm:ss"
-                                        timeFormat="HHmm"
-                                        timeIntervals={60}
-                                        showYearDropdown
-                                    />
-                                </InputGroup>
-                            </Col>
+                                    <label className="label_format">LTIOV <span style={{fontSize: "9px"}}>(last date & time intel of value)</span></label>
+                                    <InputGroup className="input-group margin-bottom-sm">
+                                        <InputGroupAddon className="input-group-addon" addonType="prepend">
+                                            <FontAwesome name="calendar"/>
+                                        </InputGroupAddon>
+                                        <DatePicker
+                                            className={"Select-control"}
+                                            selected={_this.state.ltiov}
+                                            onChange={_this.dateChanged.bind(_this, "ltiov")}
+                                            showTimeSelect
+                                            dateFormat="YYYY-MM-DDTHH:mm:ss"
+                                            timeFormat="HHmm"
+                                            timeIntervals={60}
+                                            showYearDropdown
+                                        />
+                                    </InputGroup>
+                                </Col>
                             </Row>
                             <Row>
                                 <Col md="4">
+                                    <label className="label_format">BE #</label>
+                                    <InputGroup className="input-group margin-bottom-sm">
+                                        <InputGroupAddon className="input-group-addon" addonType="prepend">
+                                            <FontAwesome name="hashtag"/>
+                                        </InputGroupAddon>
+                                        <TypeAheadInput name="beNum" value={this.state.beNum}
+                                                        handleChange={this.handleInputChange}
+                                                        getOptionsFromApi={true}
+                                                        initialOptions={[]}/>
+                                    </InputGroup>
+                                </Col>
+                                <Col md="4">
                                     <label className="label_format">Desired Sensor</label>
                                     <InputGroup className="input-group margin-bottom-sm">
-                                        <InputGroupAddon className="input-group-addon">
-                                           <FontAwesome name="star"></FontAwesome>
+                                        <InputGroupAddon className="input-group-addon" addonType="prepend">
+                                            <FontAwesome name="star"/>
                                         </InputGroupAddon>
-                                            <TypeAheadInput name="sensor" value={this.state.sensor}
-                                                handleChange={this.handleInputChange}
-                                                getOptionsFromApi={true}
-                                                initialOptions={["Cannon", "Nikon", "Pixel"]}/>
+                                        <TypeAheadInput name="sensor" value={this.state.sensor}
+                                                        handleChange={this.handleInputChange}
+                                                        getOptionsFromApi={true}
+                                                        initialOptions={["Cannon", "Nikon", "Pixel"]}/>
+                                    </InputGroup>
+                                </Col>
+                                <Col md="4">
+                                    <Row>
+                                        <Col md="12">
+                                            <label className="label_format">Imagery Product Required</label>
+                                        </Col>
+                                        <Col md="12">
+                                            <input name="productRequired" type="checkbox"
+                                                   value={this.state.productRequired}
+                                                   onChange={this.handleInputChange}/>
+                                        </Col>
+                                    </Row>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col md="4">
+                                    <label className="label_format">Target Name</label>
+                                    <InputGroup className="input-group margin-bottom-sm">
+                                        <InputGroupAddon className="input-group-addon" addonType="prepend">
+                                            <FontAwesome name="crosshairs"/>
+                                        </InputGroupAddon>
+                                        <TypeAheadInput name="targetName" value={this.state.targetName}
+                                                        handleChange={this.handleInputChange}
+                                                        getOptionsFromApi={true}
+                                                        initialOptions={[]}/>
+                                    </InputGroup>
+                                </Col>
+                                <Col md="4">
+                                    <label className="label_format">Terminator #</label>
+                                    <InputGroup className="input-group margin-bottom-sm">
+                                        <InputGroupAddon className="input-group-addon" addonType="prepend">
+                                            <FontAwesome name="hashtag"/>
+                                        </InputGroupAddon>
+                                        <TypeAheadInput name="termNum" value={this.state.termNum}
+                                                        handleChange={this.handleInputChange}
+                                                        getOptionsFromApi={true}
+                                                        initialOptions={[]}/>
                                     </InputGroup>
                                 </Col>
                                 <Col md="4">
                                     <label className="label_format">Final Product Classification</label>
                                     <InputGroup className="input-group margin-bottom-sm">
-                                        <InputGroupAddon className="input-group-addon">
-                                          <i className="icon">//</i>
+                                        <InputGroupAddon className="input-group-addon" addonType="prepend">
+                                            <i className="icon">{"//"}</i>
                                         </InputGroupAddon>
                                         <TypeAheadInput name="maxClassification" value={this.state.maxClassification}
                                                         handleChange={this.handleInputChange}
@@ -328,101 +375,48 @@ class RequestPage extends Component {
                                                         initialOptions={[]}/>
                                     </InputGroup>
                                 </Col>
-                                <Col md="4">
-                                    <Row>
-                                    <Col md="12">
-                                    <label className="label_format">Imagery Product Required</label>
-                                    </Col>
-                                    <Col md="12">
-                                        <input name="productRequired" type="checkbox"
-                                               value={this.state.productRequired}
-                                               onChange={this.handleInputChange}/>
-                                    </Col>
-                                    </Row>
+                            </Row>
+                            <Row>
+                                <Col md="6">
+                                    <label className="label_format">Geocoords or MGRS</label>
+                                    <InputGroup className="input-group margin-bottom-sm">
+                                        <InputGroupAddon className="input-group-addon" addonType="prepend">
+                                            <FontAwesome name="globe"/>
+                                        </InputGroupAddon>
+                                        <TypeAheadInput name="coords" value={this.state.coords}
+                                                        handleChange={this.handleInputChange}
+                                                        getOptionsFromApi={true}
+                                                        initialOptions={[]}/>
+                                    </InputGroup>
                                 </Col>
-                        </Row>
-
-                        <Row>
-                        <Col md="4">
-                            <label className="label_format">Target Name</label>
-                            <InputGroup className="input-group margin-bottom-sm">
-                                <InputGroupAddon className="input-group-addon">
-                                  <FontAwesome name="crosshairs"></FontAwesome>
-                                </InputGroupAddon>
-                                <TypeAheadInput name="targetName" value={this.state.targetName}
-                                                handleChange={this.handleInputChange}
-                                                getOptionsFromApi={true}
-                                                initialOptions={[]}/>
-                            </InputGroup>
-                        </Col>
-                        <Col md="4">
-                            <label className="label_format">BE #</label>
-                            <InputGroup className="input-group margin-bottom-sm">
-                                <InputGroupAddon className="input-group-addon">
-                                  <FontAwesome name="hashtag"></FontAwesome>
-                                </InputGroupAddon>
-                                <TypeAheadInput name="beNum" value={this.state.beNum}
-                                                handleChange={this.handleInputChange}
-                                                getOptionsFromApi={true}
-                                                initialOptions={[]}/>
-                            </InputGroup>
-                        </Col>
-                        <Col md="4">
-                            <label className="label_format">Terminator #</label>
-                            <InputGroup className="input-group margin-bottom-sm">
-                                <InputGroupAddon className="input-group-addon">
-                                  <FontAwesome name="hashtag"></FontAwesome>
-                                </InputGroupAddon>
-                                <TypeAheadInput name="termNum" value={this.state.termNum}
-                                    handleChange={this.handleInputChange}
-                                    getOptionsFromApi={true}
-                                    initialOptions={[]}/>
-                            </InputGroup>
-                        </Col>
-                        </Row>
-                        <Row>
-                        <Col md="6">
-                            <label className="label_format">Geocoords or MGRS</label>
-                            <InputGroup className="input-group margin-bottom-sm">
-                                <InputGroupAddon className="input-group-addon">
-                                  <FontAwesome name="globe"></FontAwesome>
-                                </InputGroupAddon>
-                                <TypeAheadInput name="coords" value={this.state.coords}
-                                                handleChange={this.handleInputChange}
-                                                getOptionsFromApi={true}
-                                                initialOptions={[]}/>
-                            </InputGroup>
-                        </Col>
-                        <Col md="6">
-                            <label className="label_format">EEI</label>
-                            <InputGroup className="input-group margin-bottom-sm">
-                                <InputGroupAddon className="input-group-addon">
-                                  <FontAwesome name="map-marker"></FontAwesome>
-                                </InputGroupAddon>
-                                <TypeAheadInput name="eei" value={this.state.eei}
-                                                handleChange={this.handleInputChange}
-                                                getOptionsFromApi={true}
-                                                initialOptions={[]}/>
-                            </InputGroup>
-                        </Col>
-                        </Row>
-                        <Row>
-                            <Col md="12">
-                            <label className="label_format">Justification</label>
-                            </Col>
-                            <Col md="12">
+                                <Col md="6">
+                                    <label className="label_format">EEI</label>
+                                    <InputGroup className="input-group margin-bottom-sm">
+                                        <InputGroupAddon className="input-group-addon" addonType="prepend">
+                                            <FontAwesome name="map-marker"/>
+                                        </InputGroupAddon>
+                                        <TypeAheadInput name="eei" value={this.state.eei}
+                                                        handleChange={this.handleInputChange}
+                                                        getOptionsFromApi={true}
+                                                        initialOptions={[]}/>
+                                    </InputGroup>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col md="12">
+                                    <label className="label_format">Justification</label>
+                                </Col>
+                                <Col md="12">
                                 <textarea className={"textArea"} name="justification" type="string"
                                           value={this.state.justification}
                                           onChange={this.handleInputChange}/>
+                                </Col>
+                            </Row>
+                            <br/>
+                            <Col md="12">
+                                <Button block size="lg" type="submit" value="Submit"
+                                        className="greenButton">Submit</Button>
                             </Col>
-                        </Row>
-
-
-
-                        <br/>
-                        <Col md="12">
-                        <Button block size="lg" type="submit" value="Submit" className="greenButton">Submit</Button>
-                        </Col>
                         </Container>
                     </form>
                 </div>
