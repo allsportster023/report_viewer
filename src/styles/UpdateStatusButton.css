@@ -1,0 +1,12 @@
+.greenBtn {
+    background-color: #06ad78;
+    color: white;
+    border-radius: 3px;
+    border-color: #06ad78;
+    margin-left: 3px;
+}
+.modalStyle{
+    background-color: #262626;
+    color: gray;
+    padding: 30px;
+}

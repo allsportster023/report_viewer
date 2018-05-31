@@ -1,0 +1,10 @@
+.mod {
+    background-color: rgba(0,0,0,0.8);
+    padding: 50px;
+}
+.greenBtnClose {
+    background-color: white;
+    color: #06ad78;
+    border-radius: 3px;
+    font-weight: bold;
+}
