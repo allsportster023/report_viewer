@@ -59,7 +59,17 @@ class OpenFlowGraph extends Component {
 
         return (
             <div onClick={this.state.showModal ? this.handleCloseModal : null}>
-                <button onClick={this.setSelected.bind(this)}> View Graph </button>
+                <button style={{
+                        borderRadius: "3px",
+                        borderColor: "#464646",
+                        backgroundColor: "#464646",
+                          textShadowColor: 'rgba(0, 0, 0, 0.75)',
+                          textShadowOffset: {width: -1, height: 1},
+                          textShadowRadius: 10
+                    }}
+                    onClick={this.setSelected.bind(this)}>
+                    View Graph
+                </button>
                 <Modal isOpen={this.state.showModal} style={customStyles} ariaHideApp={false} >
                     (Click anywhere to close)
                     <FlowDiagram data={this.props.row}/>

@@ -31,13 +31,23 @@
     color: #06ad78;
     text-shadow: 7px 7px 30px black;
     vertical-align: middle;
+    padding-left: 30px;
 }
 .submitArrowButton {
-    height: 305px;
-    width: 600px;
     border: none;
+    width: 80%;
     background: none !important;
     border-radius: 20px;
+}
+.submitText{
+    height: 100%;
+    padding-top: 10%;
+}
+.SubmitRqstImg {
+    image: url('../images/SubmitRequestImage2.png');
+    width: 100%;
+    align: middle;
+    vertical-align: middle;
 }
 
 .App-main-init {

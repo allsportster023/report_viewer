@@ -14,6 +14,7 @@ import {Col} from 'reactstrap';
 import {Container} from 'reactstrap';
 import {Button} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../styles/EditEntryPage.css';
 
 
 // var iconStyle = {
@@ -179,15 +180,15 @@ class EditEntryPage extends Component {
         const _this = this;
 
         return (
-            <div className="EditEntryPage-main">
+            <div className="edEntStyle" style={{backgroundColor: "rgba(0,0,0,0)", color: "gray", fontWeight: "bold"}}>
                 {/*<span className="fake-link" onClick={this.props.resetAction()}>Go back</span>*/}
-                Please fill in all required fields and submit
+                <span className="directions">Please fill in all required fields and submit</span>
                 <div className={"requestContainer"}>
                     <form id={"requestForm"} onSubmit={this.handleSubmit}>
                         <Container className="containerStyle">
                             <Row>
                                 <Col md="12">
-                                    <label>Chnage Status</label>
+                                    <label>Change Status</label>
                                     <InputGroup className="input-group margin-bottom-sm">
                                         <InputGroupAddon className="input-group-addon" addonType="prepend">
                                             <i className="icon">{"//"}</i>

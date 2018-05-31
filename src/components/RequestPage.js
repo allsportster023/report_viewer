@@ -157,7 +157,7 @@ class RequestPage extends Component {
                 Please fill in all required fields and submit
                 <div className={"requestContainer"}>
                     <form id={"requestForm"} onSubmit={this.handleSubmit}>
-                        <Container className="containerStyle">
+                        <Container>
                             <Row>
                                 <Col md="12">
                                     <label>Request Classification</label>

@@ -96,7 +96,7 @@ class FlowDiagram extends Component {
         if (this.props.data.state === 'collectionCompleted')
             collectionCompletedNodeColor = 'rgb(192,255,0)';
 
-        let collectionCompletedNode = new DefaultNodeModel("Collection Completed", collectionCompletedNodeColor);
+        let collectionCompletedNode = new DefaultNodeModel("Collection Approved", collectionCompletedNodeColor);
         let collectionCompletedInPort = collectionCompletedNode.addInPort(" ");
         let collectionCompletedOutPort = collectionCompletedNode.addOutPort(" ");
         collectionCompletedNode.setPosition(650, 220);

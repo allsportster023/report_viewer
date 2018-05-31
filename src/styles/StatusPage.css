@@ -8,4 +8,5 @@
 .statusPageTable {
     background-color: rgba(0,0,0,0.5);
     color: gray;
+    padding: 20px;
 }

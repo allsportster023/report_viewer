@@ -8,12 +8,17 @@
   float: left;
   height: 50px;
 }
+.Warhawks-logo {
+    image: url("../images/WarhawksLogo.png");
+    width: 2.7%;
+}
 
 .App-header {
   background-color: #222;
   height: 7vh;
   padding: 10px;
   color: white;
+
   display: flex;
   align-items: center; /* align vertical */
 

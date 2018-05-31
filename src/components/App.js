@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import logo from '../images/logo.svg';
+import Warhawks from '../images/WarhawksLogo.png';
+import Image from 'react';
 import '../styles/App.css';
 import {
     BrowserRouter as Router,
@@ -17,6 +19,7 @@ class App extends Component {
                 <div className="App">
                     <header className="App-header">
                         <img src={logo} className="App-logo" alt="logo"/>
+                        <img src={Warhawks} className="Warhawks-logo"/>
                         <span>Warhawks Tool</span>
                         <span className={"headerLink"}><Link to="/">Home</Link></span>
                         <span className={"headerLink"}><Link to="/status">Status</Link></span>

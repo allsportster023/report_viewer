@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import ReactModal from 'react-modal';
+import '../styles/OpenEditButton.css';
 
 import EditEntryPage from './EditEntryPage';
 
@@ -52,11 +53,19 @@ class OpenEditButton extends Component {
 
         return (
             <div>
-                <button onClick={this.setSelected.bind(this)}> Edit </button>
-                <ReactModal isOpen={this.state.showModal} ariaHideApp={false}>
-                    <button onClick={this.changeModalState}>Close</button>
+                <button style={{
+                        borderRadius: "3px",
+                        borderColor: "#262626",
+                        backgroundColor: "#262626"
+                    }}
+                    onClick={this.setSelected.bind(this)}>
+                    <i class="fa fa-edit"></i>
+                    Edit
+                </button>
+                <ReactModal className="mod" isOpen={this.state.showModal} ariaHideApp={false}>
+                    <button className="greenBtnClose" onClick={this.changeModalState}>Close</button>
 
-                    <EditEntryPage data={this.props.row}/>
+                    <EditEntryPage className="modal" data={this.props.row}/>
                 </ReactModal>
             </div>
 

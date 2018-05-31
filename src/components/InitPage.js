@@ -5,6 +5,7 @@ import './RequestPage'
 import FontAwesome from 'react-fontawesome'
 import { Row } from 'reactstrap';
 import { Col } from 'reactstrap';
+import SubmitRequestImg from '../images/SubmitRequestImage2.png';
 
 class InitPage extends Component {
 
@@ -14,21 +15,21 @@ class InitPage extends Component {
                 <div>
                     <button className="submitArrowButton">
                         <Row>
-                        <Col lg="9">
-                        <Link to="/request">
-                            <div className="impactText">SUBMIT REQUEST</div>
-                        </Link>
-                        </Col>
-                        <Col md="3">
-                        <FontAwesome name='angle-double-right' className="submitArrow"/>
-                        </Col>
+                            <Col lg="9" className="submitText">
+                            <Link to="/request">
+                                <div>
+                                    <img src={SubmitRequestImg} className="SubmitRqstImg" alt="SUBMIT REQUEST"/>
+                                </div>
+                            </Link>
+                            </Col>
+                            <Col md="3">
+                            <FontAwesome name='angle-double-right' className="submitArrow"/>
+                            </Col>
                         </Row>
-
-
                     </button>
                 </div>
                 <hr width={"40%"}/>
-                <button className={"subButton"} ><Link to="/status">Check Status</Link></button>
+                <button className={"subButton"} ><Link className="subButton" to="/status">Check Status</Link></button>
             </div>
         );
     }

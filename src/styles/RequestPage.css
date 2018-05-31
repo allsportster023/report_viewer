@@ -1,7 +1,6 @@
 .RequestPage-main {
     width: 70%;
     text-align: center;
-    background-color: rgba(0,0,0,0.5);
     margin: 0 auto;
     color: gray;
 }
@@ -9,9 +8,7 @@
 .requestContainer {
     width: 40px;
 }
-.containerStyle {
-    width: 60px;
-}
+
 
 #requestForm {
     text-align: left;

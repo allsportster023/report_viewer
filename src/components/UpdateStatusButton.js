@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import ReactModal from 'react-modal';
+import '../styles/UpdateStatusButton.css';
 
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -47,8 +48,23 @@ class UpdateStatusButton extends Component {
         if (this.props.row.state !== 'productCompleted') {
             return (
                 <div>
-                    <button onClick={this.setSelected.bind(this)}><span style={{fontSize: "1em"}}>Promote to next step</span></button>
-                    <ReactModal isOpen={this.state.showModal} ariaHideApp={false} style={customStyles}>
+                    <button style={{
+                        backgroundColor: "#06ad78",
+                        color: "white",
+                        border: "none",
+                        borderRadius: "3px"
+                        }}
+                        onClick={this.setSelected.bind(this)}>
+                        <p style={{fontSize: "1em"}}>
+                            Promote
+                        </p>
+                        <p style={{
+                            fontSize: "12px",
+                            lineHeight: "0px"}}>
+                            to next step
+                        </p>
+                    </button>
+                    <ReactModal className="modalStyle" isOpen={this.state.showModal} ariaHideApp={false} style={customStyles}>
 
                         <UpdateStatusModal onClick={this.changeModalState} data={this.props.row}/>
                     </ReactModal>

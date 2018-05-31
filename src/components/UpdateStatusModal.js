@@ -83,8 +83,8 @@ class UpdateStatusModal extends Component {
                     Are you sure you want to change state to
                     <b> "{this.humanReadableStatues[this.statuses.indexOf(this.props.data.state) + 1]}"</b>
                     <br/><br/>
-                    <button onClick={this.handleOk.bind(this, false)}>Yes</button>
-                    <button onClick={this.handleCancel.bind(this)}>No</button>
+                    <button className="greenBtn" onClick={this.handleOk.bind(this, false)}>Yes</button>
+                    <button className="greenBtn" onClick={this.handleCancel.bind(this)}>No</button>
                 </div>)
         }
 
